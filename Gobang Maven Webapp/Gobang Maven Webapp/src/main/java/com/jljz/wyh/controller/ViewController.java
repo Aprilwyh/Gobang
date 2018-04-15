@@ -21,7 +21,6 @@ public class ViewController {
     }
 
     /**
-
      * 页面跳转控制器
      * @param target 目标路径(相对地址)
      * @return 
@@ -29,5 +28,15 @@ public class ViewController {
     @RequestMapping("home")
     public ModelAndView gethome(Model model) {
         return new ModelAndView("pages/Home");
+    }
+
+    /**
+     * 人人对弈
+     * @param target 目标路径(相对地址)
+     * @return 
+     */
+    @RequestMapping("rrdy")
+    public ModelAndView rrdy(Model model) {
+        return new ModelAndView("pages/rrdy");
     }
 }
