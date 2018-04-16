@@ -31,12 +31,22 @@ public class ViewController {
     }
 
     /**
-     * 人人对弈
+     * 人机对战
      * @param target 目标路径(相对地址)
      * @return 
      */
-    @RequestMapping("rrdy")
+    @RequestMapping("rjdz")
     public ModelAndView rrdy(Model model) {
-        return new ModelAndView("pages/rrdy");
+        return new ModelAndView("pages/rjdz");
+    }
+
+    @RequestMapping("sls")
+    public ModelAndView sls(Model model) {
+        return new ModelAndView("Error/404");
+    }
+
+    @RequestMapping("kfz")
+    public ModelAndView jsz(Model model) {
+        return new ModelAndView("Error/kfz");
     }
 }

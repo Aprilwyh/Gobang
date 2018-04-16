@@ -4,9 +4,9 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>人人对弈</title>
+	<title>人机对战</title>
 	<!-- <link rel="stylesheet" type="text/css" href="css/*.css"> -->
-	<script type="text/javascript" src="js/yw/rrdy.js"></script>
+	<script type="text/javascript" src="js/yw/rjdz.js"></script>
 	<script type="text/javascript" src="js/common/jquery-1.7.2.js"></script>
 </head>
 <body>
