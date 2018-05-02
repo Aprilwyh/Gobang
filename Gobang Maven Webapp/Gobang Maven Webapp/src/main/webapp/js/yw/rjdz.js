@@ -1,10 +1,10 @@
 /**
- * cookieHandle: ³£ÓÃcookie²Ù×÷·½·¨µÄ·â×°
+ * cookieHandle: å¸¸ç”¨cookieæ“ä½œæ–¹æ³•çš„å°è£…
  * date: 2018-4-15
  * author: weiyanhui
 **/
 var cookieHandle = {
-    //»ñÈ¡cookieÖĞname¶ÔÓ¦µÄÖµ
+    //è·å–cookieä¸­nameå¯¹åº”çš„å€¼
     getCookie: function (name) {
         var cookies = document.cookie.split("; "),
             arr;
@@ -16,16 +16,16 @@ var cookieHandle = {
         }
         return "";
     },
-    // ÉèÖÃcookie
-    // option.name: cookieÃû£¬±ØÑ¡
-    // option.value: cookieÖµ£¬±ØÑ¡
-    // option.expiresHours: ¹ıÆÚÊ±¼ä£¬¿ÉÑ¡£¬Ä¬ÈÏÎªä¯ÀÀÆ÷¹Ø±Õ¼´ÏûÊ§
-    // option.path: cookie´æ·ÅÂ·¾¶£¬¿ÉÑ¡¡£ÀıÈç"/"¡¢"/shop"¡£
-    // Ä¬ÈÏÇé¿öÏÂ£¬Èç¹ûÔÚÄ³¸öÒ³Ãæ´´½¨ÁËÒ»¸öcookie£¬ÄÇÃ´¸ÃÒ³ÃæËùÔÚÄ¿Â¼ÖĞµÄÆäËûÒ³ÃæÒ²¿ÉÒÔ·ÃÎÊ¸Ãcookie¡£
-    // Èç¹ûÕâ¸öÄ¿Â¼ÏÂ»¹ÓĞ×ÓÄ¿Â¼£¬ÔòÔÚ×ÓÄ¿Â¼ÖĞÒ²¿ÉÒÔ·ÃÎÊ¡£
-    // ÀıÈçÔÚwww.xxxx.com/html/a.htmlÖĞËù´´½¨µÄcookie£¬
-    // ¿ÉÒÔ±»www.xxxx.com/html/b.html»òwww.xxx.com/html/some/c.htmlËù·ÃÎÊ£¬µ«²»ÄÜ±»www.xxxx.com/d.html·ÃÎÊ¡£
-    // option.domain: ¿É·ÃÎÊ¸ÃcookieµÄÓòÃû£¬¿ÉÑ¡¡£
+    // è®¾ç½®cookie
+    // option.name: cookieåï¼Œå¿…é€‰
+    // option.value: cookieå€¼ï¼Œå¿…é€‰
+    // option.expiresHours: è¿‡æœŸæ—¶é—´ï¼Œå¯é€‰ï¼Œé»˜è®¤ä¸ºæµè§ˆå™¨å…³é—­å³æ¶ˆå¤±
+    // option.path: cookieå­˜æ”¾è·¯å¾„ï¼Œå¯é€‰ã€‚ä¾‹å¦‚"/"ã€"/shop"ã€‚
+    // é»˜è®¤æƒ…å†µä¸‹ï¼Œå¦‚æœåœ¨æŸä¸ªé¡µé¢åˆ›å»ºäº†ä¸€ä¸ªcookieï¼Œé‚£ä¹ˆè¯¥é¡µé¢æ‰€åœ¨ç›®å½•ä¸­çš„å…¶ä»–é¡µé¢ä¹Ÿå¯ä»¥è®¿é—®è¯¥cookieã€‚
+    // å¦‚æœè¿™ä¸ªç›®å½•ä¸‹è¿˜æœ‰å­ç›®å½•ï¼Œåˆ™åœ¨å­ç›®å½•ä¸­ä¹Ÿå¯ä»¥è®¿é—®ã€‚
+    // ä¾‹å¦‚åœ¨www.jljz.wyh.com/html/a.htmlä¸­æ‰€åˆ›å»ºçš„cookieï¼Œ
+    // å¯ä»¥è¢«www.jljz.wyh.com/html/b.htmlæˆ–www.jljz.wyh.com/html/some/c.htmlæ‰€è®¿é—®ï¼Œä½†ä¸èƒ½è¢«www.jljz.wyh.com/d.htmlè®¿é—®ã€‚
+    // option.domain: å¯è®¿é—®è¯¥cookieçš„åŸŸåï¼Œå¯é€‰ã€‚
     setCookie: function (option) {
         var cookieStr = encodeURIComponent(option.name) + "=" + encodeURIComponent(option.value);
         if (option.expiresHours) {
@@ -41,16 +41,714 @@ var cookieHandle = {
         }
         document.cookie = cookieStr;
     },
-    // É¾³ıcookie
-    // name: cookieÃû£¬±ØÑ¡
-    // option.path: cookie´æ·ÅÂ·¾¶£¬¿ÉÑ¡
-    // option.domain: ¿É·ÃÎÊ¸ÃcookieµÄÓòÃû£¬¿ÉÑ¡
-    // ĞèÒª×¢ÒâµÄÊÇ£¬ÉèÖÃcookieÊ±£¬Èç¹ûsetCookie´«ÁËpath¡¢domain£¬É¾³ıÊ±Ò²±ØÑ¡´«ÈëÕâÁ½¸ö²ÎÊı£¬·ñÔòÎŞ·¨É¾³ıcookie
-    // ÁíÍâ£¬¾­²âÊÔ£¬ÈçÉèÖÃÁËpath¡¢domain£¬É¾³ıÊ±ĞèÔÚÉèÖÃcookieµÄÍ¬Ò»ÓòÏÂÉ¾³ı
+    // åˆ é™¤cookie
+    // name: cookieåï¼Œå¿…é€‰
+    // option.path: cookieå­˜æ”¾è·¯å¾„ï¼Œå¯é€‰
+    // option.domain: å¯è®¿é—®è¯¥cookieçš„åŸŸåï¼Œå¯é€‰
+    // éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œè®¾ç½®cookieæ—¶ï¼Œå¦‚æœsetCookieä¼ äº†pathã€domainï¼Œåˆ é™¤æ—¶ä¹Ÿå¿…é€‰ä¼ å…¥è¿™ä¸¤ä¸ªå‚æ•°ï¼Œå¦åˆ™æ— æ³•åˆ é™¤cookie
+    // å¦å¤–ï¼Œç»æµ‹è¯•ï¼Œå¦‚è®¾ç½®äº†pathã€domainï¼Œåˆ é™¤æ—¶éœ€åœ¨è®¾ç½®cookieçš„åŒä¸€åŸŸä¸‹åˆ é™¤
     deleteCookie: function (name, option) {
         var date = new Date(0);
         document.cookie = name + "=88; expires=" + date.toUTCString() +
                             (option.path ? ("; path=" + option.path) : "") +
                             (option.domain ? ("; domain=" + option.domain) : "");
     }
+};
+
+
+$(document).ready(function() {
+	fiveChess.init();
+});
+
+var fiveChess = {
+	NO_CHESS: 0,
+	BLACK_CHESS: -1,
+	WHITE_CHESS: 1,
+	chessArr: [],	//è®°å½•æ£‹å­
+	chessBoardHtml: "",
+	humanPlayer: "black",	//ç©å®¶æ£‹å­é¢œè‰²
+	AIPlayer: "white",	//AIæ£‹å­é¢œè‰²
+	isPlayerTurn: true, //è½®åˆ°playerä¸‹æ£‹
+	totalGames: cookieHandle.getCookie("totalGames") || 0,	//æ€»å±€æ•°
+	winGames: cookieHandle.getCookie("winGames") || 0,	//ç©å®¶èµ¢å±€æ•°
+	isGameStart: false,	//æ¸¸æˆå·²ç»å¼€å§‹
+	isGameOver: false, //æ¸¸æˆç»“æŸ
+	playerLastChess: [], //ç©å®¶æœ€åä¸‹å­ä½ç½®
+	AILastChess: [], //AIæœ€åä¸‹å­ä½ç½®
+
+	init: function () {
+		this.chessBoardHtml = $("div.chessboard").html();
+		var _fiveChess = this;
+		//å³ä¾§æ“ä½œæŒ‰é’®
+		$(".operating-panel a").click(function (event) {
+			event.preventDefault();
+			var id = $(this).attr("id");
+			if (_fiveChess.isGameStart && id !== "replay_btn" ) { return; }	//æ­£åœ¨æ¸¸æˆ ä¸æ“ä½œ
+			switch (id) {
+				case "black_btn":
+					_fiveChess.humanPlayer = "black";
+					_fiveChess.AIPlayer = "white";
+					break;
+				case "white_btn":
+					_fiveChess.humanPlayer = "white";
+					_fiveChess.AIPlayer = "black";
+					break;
+				case "first_move_btn":
+					_fiveChess.isPlayerTurn = true;
+					break;
+				case "second_move_btn":
+					_fiveChess.isPlayerTurn = false;
+					break;
+				case "replay_btn":
+					_fiveChess.resetChessBoard();
+					if (_fiveChess.isGameStart) {	//ç‚¹é‡ç©
+						_fiveChess.gameOver();
+					}
+					else {	//ç‚¹å¼€å§‹
+						_fiveChess.gameStart();
+					}
+					break;
+			}
+			if (id !== "replay_btn") {
+				$(this).addClass("selected").siblings().removeClass("selected");
+			}
+		});
+		this.resetChessBoard();
+		$("#result_info").html("èƒœç‡ï¼š" + (this.winGames * 100 / this.totalGames | 0) + "%");
+	},
+	//é‡ç½®æ£‹ç›˜
+	resetChessBoard: function () {
+		$("div.chessboard").html(this.chessBoardHtml);
+		$("#result_tips").html("");
+		this.isGameOver = false;
+		this.isPlayerTurn = $("#first_move_btn").hasClass("selected");
+		//åˆå§‹åŒ–æ£‹å­çŠ¶æ€
+		var i, j;
+		for (i = 0; i < 15; i++) {
+			this.chessArr[i] = [];
+			for (j = 0; j < 15; j++) {
+				this.chessArr[i][j] = this.NO_CHESS;
+			}
+		}
+		//playerä¸‹æ£‹äº‹ä»¶
+		var _fiveChess = this;
+		$("div.chessboard div").click(function () {
+			if (!_fiveChess.isPlayerTurn || _fiveChess.isGameOver) {
+				return;
+			}
+			if (!_fiveChess.isGameStart) {
+				_fiveChess.gameStart();
+			}
+			var index = $(this).index(),
+				i = index / 15 | 0,
+				j = index % 15;
+			if (_fiveChess.chessArr[i][j] === _fiveChess.NO_CHESS) {
+				_fiveChess.playChess(i, j, _fiveChess.humanPlayer);
+				if (i === 0 && j === 0) {
+					$(this).removeClass("hover-up-left");
+				}
+				else if (i === 0 && j === 14) {
+					$(this).removeClass("hover-up-right");
+				}
+				else if (i === 14 && j === 0) {
+					$(this).removeClass("hover-down-left");
+				}
+				else if (i === 14 && j === 14) {
+					$(this).removeClass("hover-down-right");
+				}
+				else if (i === 0) {
+					$(this).removeClass("hover-up");
+				}
+				else if (i === 14) {
+					$(this).removeClass("hover-down");
+				}
+				else if (j === 0) {
+					$(this).removeClass("hover-left");
+				}
+				else if (j === 14) {
+					$(this).removeClass("hover-right");
+				}
+				else {
+					$(this).removeClass("hover");
+				}
+				_fiveChess.playerLastChess = [i, j];
+				_fiveChess.playerWinOrNot(i, j);
+			}
+		});
+		//é¼ æ ‡åœ¨æ£‹ç›˜ä¸Šç§»åŠ¨æ•ˆæœ
+		$("div.chessboard div").hover(
+			function () {
+				if (!_fiveChess.isPlayerTurn || _fiveChess.isGameOver) { return; }
+				var index = $(this).index(),
+					i = index / 15 | 0,
+					j = index % 15;
+				if (_fiveChess.chessArr[i][j] === _fiveChess.NO_CHESS) {
+					if (i === 0 && j === 0) {
+						$(this).addClass("hover-up-left");
+					}
+					else if (i === 0 && j === 14) {
+						$(this).addClass("hover-up-right");
+					}
+					else if (i === 14 && j === 0) {
+						$(this).addClass("hover-down-left");
+					}
+					else if (i === 14 && j === 14) {
+						$(this).addClass("hover-down-right");
+					}
+					else if (i === 0) {
+						$(this).addClass("hover-up");
+					}
+					else if (i === 14) {
+						$(this).addClass("hover-down");
+					}
+					else if (j === 0) {
+						$(this).addClass("hover-left");
+					}
+					else if (j === 14) {
+						$(this).addClass("hover-right");
+					}
+					else {
+						$(this).addClass("hover");
+					}
+				}
+			},
+			function () {
+				if (!_fiveChess.isPlayerTurn || _fiveChess.isGameOver) { return; }
+				var index = $(this).index(),
+					i = index / 15 | 0,
+					j = index % 15;
+					if (i === 0 && j === 0) {
+						$(this).removeClass("hover-up-left");
+					}
+					else if (i === 0 && j === 14) {
+						$(this).removeClass("hover-up-right");
+					}
+					else if (i === 14 && j === 0) {
+						$(this).removeClass("hover-down-left");
+					}
+					else if (i === 14 && j === 14) {
+						$(this).removeClass("hover-down-right");
+					}
+					else if (i === 0) {
+						$(this).removeClass("hover-up");
+					}
+					else if (i === 14) {
+						$(this).removeClass("hover-down");
+					}
+					else if (j === 0) {
+						$(this).removeClass("hover-left");
+					}
+					else if (j === 14) {
+						$(this).removeClass("hover-right");
+					}
+					else {
+						$(this).removeClass("hover");
+					}
+			}
+		);
+	},
+	gameStart: function () {
+		this.totalGames++;
+		cookieHandle.setCookie({ name: "totalGames", value: this.totalGames, expiresHours: 365 * 24 });
+		//AIå…ˆæ‰‹
+		if (!this.isPlayerTurn) {
+			this.AImoveChess();
+		}
+		this.isGameStart = true;
+		$(".operating-panel p a").addClass("disable");
+		$("#replay_btn").html("é‡&nbsp;&nbsp;&nbsp;ç©");
+	},
+	gameOver: function () {
+		this.isGameStart = false;
+		$(".operating-panel a").removeClass("disable");
+		$("#replay_btn").html("å¼€&nbsp;&nbsp;&nbsp;å§‹");
+		$("#result_info").html("èƒœç‡ï¼š" + (this.winGames * 100 / this.totalGames | 0) + "%");
+	},
+
+	//ä¸‹æ£‹ iè¡Œï¼Œjåˆ—ï¼Œcoloré¢œè‰²
+	playChess: function (i, j, color) {
+		this.chessArr[i][j] = color === "black" ? this.BLACK_CHESS : this.WHITE_CHESS;
+		if (color === this.AIPlayer) {
+			$("div.chessboard div." + color + "-last").addClass(color).removeClass(color + "-last");
+			$("div.chessboard div:eq(" + (i * 15 + j) + ")").addClass(color + "-last");
+		}
+		else {
+			$("div.chessboard div:eq(" + (i * 15 + j) + ")").addClass(color);
+		}
+	},
+	//ç©å®¶æ˜¯å¦å–èƒœ
+	playerWinOrNot: function (i, j) {
+		var nums = 1,	//è¿ç»­æ£‹å­ä¸ªæ•°
+			chessColor = this.humanPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS,
+			m, n;
+		//xæ–¹å‘
+		for (m = j - 1; m >= 0; m--) {
+			if (this.chessArr[i][m] === chessColor) {
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		for (m = j + 1; m < 15; m++) {
+			if (this.chessArr[i][m] === chessColor) {
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		if (nums >= 5) {
+			this.playerWin();
+			return;
+		}
+		else {
+			nums = 1;
+		}
+		//yæ–¹å‘
+		for (m = i - 1; m >= 0; m--) {
+			if (this.chessArr[m][j] === chessColor) {
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		for (m = i + 1; m < 15; m++) {
+			if (this.chessArr[m][j] === chessColor) {
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		if (nums >= 5) {
+			this.playerWin();
+			return;
+		}
+		else {
+			nums = 1;
+		}
+		//å·¦æ–œæ–¹å‘
+		for (m = i - 1, n = j - 1; m >= 0 && n >= 0; m--, n--) {
+			if (this.chessArr[m][n] === chessColor) {
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		for (m = i + 1, n = j + 1; m < 15 && n < 15; m++, n++) {
+			if (this.chessArr[m][n] === chessColor) {
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		if (nums >= 5) {
+			this.playerWin();
+			return;
+		}
+		else {
+			nums = 1;
+		}
+		//å³æ–œæ–¹å‘
+		for (m = i - 1, n = j + 1; m >= 0 && n < 15; m--, n++) {
+			if (this.chessArr[m][n] === chessColor) {
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		for (m = i + 1, n = j - 1; m < 15 && n >= 0; m++, n--) {
+			if (this.chessArr[m][n] === chessColor) {
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		if (nums >= 5) {
+			this.playerWin();
+			return;
+		}
+		this.AImoveChess();
+	},
+	playerWin: function () {
+		this.winGames++;
+		cookieHandle.setCookie({ name: "winGames", value: this.winGames, expiresHours: 365 * 24 });
+		this.showResult(true);
+		this.gameOver();
+	},
+	//AIä¸‹æ£‹
+	AImoveChess: function () {
+		this.isPlayerTurn = false;
+		var maxX = 0,
+			maxY = 0,
+			maxWeight = 0,
+			i, j, tem;
+		for (i = 14; i >= 0; i--) {
+			for (j = 14; j >= 0; j--) {
+				if (this.chessArr[i][j] !== this.NO_CHESS) {
+					continue;
+				}
+				tem = this.computeWeight(i, j);
+				if (tem > maxWeight) {
+					maxWeight = tem;
+					maxX = i;
+					maxY = j;
+				}
+			}
+		}
+		this.playChess(maxX, maxY, this.AIPlayer);
+		this.AILastChess = [maxX, maxY];
+		if ((maxWeight >= 100000 && maxWeight < 250000) || (maxWeight >= 500000)) {
+			this.showResult(false);
+			this.gameOver();
+		}
+		else {
+			this.isPlayerTurn = true;
+		}
+	},
+	showResult: function(isPlayerWin) {
+		if (isPlayerWin) {
+			$("#result_tips").html("æ­å–œä½ è·èƒœï¼");
+		}
+		else {
+			$("#result_tips").html("å“ˆå“ˆï¼Œä½ è¾“å’¯ï¼");
+		}
+		this.isGameOver = true;
+		this.showWinChesses(isPlayerWin);
+	},
+	//æ ‡è®°æ˜¾ç¤ºè·èƒœæ£‹å­
+	showWinChesses: function (isPlayerWin) {
+		var nums = 1,	//è¿ç»­æ£‹å­ä¸ªæ•°
+			lineChess = [],	//è¿ç»­æ£‹å­ä½ç½®
+			i,
+			j,
+			chessColor,
+			m, n;
+		if (isPlayerWin) {
+			chessColor = this.humanPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS;
+			i = this.playerLastChess[0];
+			j = this.playerLastChess[1];
+		}
+		else {
+			chessColor = this.AIPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS;
+			i = this.AILastChess[0];
+			j = this.AILastChess[1];
+		}
+		$("div.chessboard div." + this.AIPlayer + "-last").addClass(this.AIPlayer).removeClass(this.AIPlayer + "-last");
+		//xæ–¹å‘
+		lineChess[0] = [i];
+		lineChess[1] = [j];
+		for (m = j - 1; m >= 0; m--) {
+			if (this.chessArr[i][m] === chessColor) {
+				lineChess[0][nums] = i;
+				lineChess[1][nums] = m;
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		for (m = j + 1; m < 15; m++) {
+			if (this.chessArr[i][m] === chessColor) {
+				lineChess[0][nums] = i;
+				lineChess[1][nums] = m;
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		if (nums >= 5) {
+			for (k = nums - 1; k >= 0; k--) {
+				this.markChess(lineChess[0][k] * 15 + lineChess[1][k], isPlayerWin ? this.humanPlayer : this.AIPlayer);
+			}
+			return;
+		}
+		//yæ–¹å‘
+		nums = 1;
+		lineChess[0] = [i];
+		lineChess[1] = [j];
+		for (m = i - 1; m >= 0; m--) {
+			if (this.chessArr[m][j] === chessColor) {
+				lineChess[0][nums] = m;
+				lineChess[1][nums] = j;
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		for (m = i + 1; m < 15; m++) {
+			if (this.chessArr[m][j] === chessColor) {
+				lineChess[0][nums] = m;
+				lineChess[1][nums] = j;
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		if (nums >= 5) {
+			for (k = nums - 1; k >= 0; k--) {
+				this.markChess(lineChess[0][k] * 15 + lineChess[1][k], isPlayerWin ? this.humanPlayer : this.AIPlayer);
+			}
+			return;
+		}
+		//å·¦æ–œæ–¹å‘
+		nums = 1;
+		lineChess[0] = [i];
+		lineChess[1] = [j];
+		for (m = i - 1, n = j - 1; m >= 0 && n >= 0; m--, n--) {
+			if (this.chessArr[m][n] === chessColor) {
+				lineChess[0][nums] = m;
+				lineChess[1][nums] = n;
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		for (m = i + 1, n = j + 1; m < 15 && n < 15; m++, n++) {
+			if (this.chessArr[m][n] === chessColor) {
+				lineChess[0][nums] = m;
+				lineChess[1][nums] = n;
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		if (nums >= 5) {
+			for (k = nums - 1; k >= 0; k--) {
+				this.markChess(lineChess[0][k] * 15 + lineChess[1][k], isPlayerWin ? this.humanPlayer : this.AIPlayer);
+			}
+			return;
+		}
+		//å³æ–œæ–¹å‘
+		nums = 1;
+		lineChess[0] = [i];
+		lineChess[1] = [j];
+		for (m = i - 1, n = j + 1; m >= 0 && n < 15; m--, n++) {
+			if (this.chessArr[m][n] === chessColor) {
+				lineChess[0][nums] = m;
+				lineChess[1][nums] = n;
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		for (m = i + 1, n = j - 1; m < 15 && n >= 0; m++, n--) {
+			if (this.chessArr[m][n] === chessColor) {
+				lineChess[0][nums] = m;
+				lineChess[1][nums] = n;
+				nums++;
+			}
+			else {
+				break;
+			}
+		}
+		if (nums >= 5) {
+			for (k = nums - 1; k >= 0; k--) {
+				this.markChess(lineChess[0][k] * 15 + lineChess[1][k], isPlayerWin ? this.humanPlayer : this.AIPlayer);
+			}
+		}
+	},
+	markChess: function (pos, color) {
+		$("div.chessboard div:eq(" + pos + ")").removeClass(color).addClass(color + "-last");
+	},
+	//ä¸‹å­åˆ°iï¼Œj Xæ–¹å‘ ç»“æœ: å¤šå°‘è¿å­ ä¸¤è¾¹æ˜¯å¦æˆªæ–­
+	putDirectX: function (i, j, chessColor) {
+		var m, n,
+			nums = 1,
+			side1 = false,
+			side2 = false;
+		for (m = j - 1; m >= 0; m--) {
+			if (this.chessArr[i][m] === chessColor) {
+				nums++;
+			}
+			else {
+				if (this.chessArr[i][m] === this.NO_CHESS) {
+					side1 = true;
+				}
+				break;
+			}
+		}
+		for (m = j + 1; m < 15; m++) {
+			if (this.chessArr[i][m] === chessColor) {
+				nums++;
+			}
+			else {
+				if (this.chessArr[i][m] === this.NO_CHESS) {
+					side2 = true;
+				}
+				break;
+			}
+		}
+		return {"nums": nums, "side1": side1, "side2": side2};
+	},
+	//ä¸‹å­åˆ°iï¼Œj Yæ–¹å‘ ç»“æœ
+	putDirectY: function (i, j, chessColor) {
+		var m, n,
+			nums = 1,
+			side1 = false,
+			side2 = false;
+		for (m = i - 1; m >= 0; m--) {
+			if (this.chessArr[m][j] === chessColor) {
+				nums++;
+			}
+			else {
+				if (this.chessArr[m][j] === this.NO_CHESS) {
+					side1 = true;
+				}
+				break;
+			}
+		}
+		for (m = i + 1; m < 15; m++) {
+			if (this.chessArr[m][j] === chessColor) {
+				nums++;
+			}
+			else {
+				if (this.chessArr[m][j] === this.NO_CHESS) {
+					side2 = true;
+				}
+				break;
+			}
+		}
+		return {"nums": nums, "side1": side1, "side2": side2};
+	},
+	//ä¸‹å­åˆ°iï¼Œj XYæ–¹å‘ ç»“æœ
+	putDirectXY: function (i, j, chessColor) {
+		var m, n,
+			nums = 1,
+			side1 = false,
+			side2 = false;
+		for (m = i - 1, n = j - 1; m >= 0 && n >= 0; m--, n--) {
+			if (this.chessArr[m][n] === chessColor) {
+				nums++;
+			}
+			else {
+				if (this.chessArr[m][n] === this.NO_CHESS) {
+					side1 = true;
+				}
+				break;
+			}
+		}
+		for (m = i + 1, n = j + 1; m < 15 && n < 15; m++, n++) {
+			if (this.chessArr[m][n] === chessColor) {
+				nums++;
+			}
+			else {
+				if (this.chessArr[m][n] === this.NO_CHESS) {
+					side2 = true;
+				}
+				break;
+			}
+		}
+		return {"nums": nums, "side1": side1, "side2": side2};
+	},
+	putDirectYX: function (i, j, chessColor) {
+		var m, n,
+			nums = 1,
+			side1 = false,
+			side2 = false;
+		for (m = i - 1, n = j + 1; m >= 0 && n < 15; m--, n++) {
+			if (this.chessArr[m][n] === chessColor) {
+				nums++;
+			}
+			else {
+				if (this.chessArr[m][n] === this.NO_CHESS) {
+					side1 = true;
+				}
+				break;
+			}
+		}
+		for (m = i + 1, n = j - 1; m < 15 && n >= 0; m++, n--) {
+			if (this.chessArr[m][n] === chessColor) {
+				nums++;
+			}
+			else {
+				if (this.chessArr[m][n] === this.NO_CHESS) {
+					side2 = true;
+				}
+				break;
+			}
+		}
+		return {"nums": nums, "side1": side1, "side2": side2};
+	},
+	//è®¡ç®—ä¸‹å­è‡³i,jçš„æƒé‡
+	computeWeight: function (i, j) {
+		var weight = 14 - (Math.abs(i - 7) + Math.abs(j - 7)), //åŸºäºæ£‹ç›˜ä½ç½®æƒé‡
+			pointInfo = {},	//æŸç‚¹ä¸‹å­åè¿å­ä¿¡æ¯
+			chessColor = this.AIPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS;
+		//xæ–¹å‘
+		pointInfo = this.putDirectX(i, j, chessColor);
+		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, true);//AIä¸‹å­æƒé‡
+		pointInfo = this.putDirectX(i, j, -chessColor);
+		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, false);//playerä¸‹å­æƒé‡
+		//yæ–¹å‘
+		pointInfo = this.putDirectY(i, j, chessColor);
+		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, true);//AIä¸‹å­æƒé‡
+		pointInfo = this.putDirectY(i, j, -chessColor);
+		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, false);//playerä¸‹å­æƒé‡
+		//å·¦æ–œæ–¹å‘
+		pointInfo = this.putDirectXY(i, j, chessColor);
+		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, true);//AIä¸‹å­æƒé‡
+		pointInfo = this.putDirectXY(i, j, -chessColor);
+		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, false);//playerä¸‹å­æƒé‡
+		//å³æ–œæ–¹å‘
+		pointInfo = this.putDirectYX(i, j, chessColor);
+		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, true);//AIä¸‹å­æƒé‡
+		pointInfo = this.putDirectYX(i, j, -chessColor);
+		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, false);//playerä¸‹å­æƒé‡
+		return weight;
+	},
+	//æƒé‡æ–¹æ¡ˆ   ç‹¬ï¼šä¸¤è¾¹ä¸ºç©ºå¯ä¸‹å­ï¼Œå•ï¼šä¸€è¾¹ä¸ºç©º
+	weightStatus: function (nums, side1, side2, isAI) {
+		var weight = 0;
+		switch (nums) {
+			case 1:
+				if (side1 && side2) {
+					weight = isAI ? 15 : 10;	//ç‹¬ä¸€
+				}
+				break;
+			case 2:
+				if (side1 && side2) {
+					weight = isAI ? 100 : 50;	//ç‹¬äºŒ
+				}
+				else if (side1 || side2) {
+					weight = isAI ? 10 : 5;	//å•äºŒ
+				}
+				break;
+			case 3:
+				if (side1 && side2) {
+					weight = isAI ? 500 : 200;	//ç‹¬ä¸‰
+				}
+				else if (side1 || side2) {
+					weight = isAI ? 30 : 20;	//å•ä¸‰
+				}
+				break;
+			case 4:
+				if (side1 && side2) {
+					weight = isAI ? 5000 : 2000;	//ç‹¬å››
+				}
+				else if (side1 || side2) {
+					weight = isAI ? 400 : 100;	//å•å››
+				}
+				break;
+			case 5:
+				weight = isAI ? 100000 : 10000;	//äº”
+				break;
+			default:
+				weight = isAI ? 500000 : 250000;
+				break;
+		}
+		return weight;
+	}
 };
