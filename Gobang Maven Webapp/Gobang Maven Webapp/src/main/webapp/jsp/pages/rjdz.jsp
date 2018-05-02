@@ -8,6 +8,7 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/*.css"> -->
 	<script type="text/javascript" src="js/yw/rjdz.js"></script>
 	<script type="text/javascript" src="js/common/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/tx/pgy.js"></script>
 </head>
 <body>
 <div class="wrapper" style="margin: auto;">
