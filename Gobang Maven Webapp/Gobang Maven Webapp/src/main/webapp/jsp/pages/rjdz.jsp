@@ -271,19 +271,19 @@
 
 	<div style="display: none">
 		<!-- 图片需合并 减少http请求数 -->
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/black.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/white.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_up.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_down.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_up_left.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_up_right.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_left.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_right.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_down_left.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_down_right.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/black_last.png" alt="preload" />
-		<img src="http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/white_last.png" alt="preload" />
+		<img src="img/black.png" alt="preload" />
+		<img src="img/white.png" alt="preload" />
+		<img src="img/hover.png" alt="preload" />
+		<img src="img/hover_up.png" alt="preload" />
+		<img src="img/hover_down.png" alt="preload" />
+		<img src="img/hover_up_left.png" alt="preload" />
+		<img src="img/hover_up_right.png" alt="preload" />
+		<img src="img/hover_left.png" alt="preload" />
+		<img src="img/hover_right.png" alt="preload" />
+		<img src="img/hover_down_left.png" alt="preload" />
+		<img src="img/hover_down_right.png" alt="preload" />
+		<img src="img/black_last.png" alt="preload" />
+		<img src="img/white_last.png" alt="preload" />
 	</div>
 </div>
 </body>
@@ -299,7 +299,7 @@
 div.chessboard {
 	margin: 30px 0 0 50px;
 	width: 542px;
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/chessboard.png) no-repeat 14px 14px rgb(250, 250, 250);
+	background: url(img/chessboard.png) no-repeat 14px 14px rgb(250, 250, 250);
 	overflow: hidden;
 	box-shadow: 2px 2px 8px #888;
 	-webkit-box-shadow: 2px 2px 8px #888;
@@ -319,43 +319,43 @@ div.chessboard div {
 
 /* 棋子 */
 div.chessboard div.black {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/black.png) no-repeat 4px 4px;
+	background: url(img/black.png) no-repeat 4px 4px;
 }
 div.chessboard div.white {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/white.png) no-repeat 4px 4px;
+	background: url(img/white.png) no-repeat 4px 4px;
 }
 div.chessboard div.hover {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover.png) no-repeat 1px 1px;
+	background: url(img/hover.png) no-repeat 1px 1px;
 }
 div.chessboard div.hover-up {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_up.png) no-repeat 1px 1px;
+	background: url(img/hover_up.png) no-repeat 1px 1px;
 }
 div.chessboard div.hover-down {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_down.png) no-repeat 1px 1px;
+	background: url(img/hover_down.png) no-repeat 1px 1px;
 }
 div.chessboard div.hover-up-left {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_up_left.png) no-repeat 1px 1px;
+	background: url(img/hover_up_left.png) no-repeat 1px 1px;
 }
 div.chessboard div.hover-up-right {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_up_right.png) no-repeat 1px 1px;
+	background: url(img/hover_up_right.png) no-repeat 1px 1px;
 }
 div.chessboard div.hover-left {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_left.png) no-repeat 1px 1px;
+	background: url(img/hover_left.png) no-repeat 1px 1px;
 }
 div.chessboard div.hover-right {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_right.png) no-repeat 1px 1px;
+	background: url(img/hover_right.png) no-repeat 1px 1px;
 }
 div.chessboard div.hover-down-left {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_down_left.png) no-repeat 1px 1px;
+	background: url(img/hover_down_left.png) no-repeat 1px 1px;
 }
 div.chessboard div.hover-down-right {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/hover_down_right.png) no-repeat 1px 1px;
+	background: url(img/hover_down_right.png) no-repeat 1px 1px;
 }
 div.chessboard div.white-last {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/white_last.png) no-repeat 4px 4px;
+	background: url(img/white_last.png) no-repeat 4px 4px;
 }
 div.chessboard div.black-last {
-	background: url(http://sandbox.runjs.cn/uploads/rs/102/r2dy3tyw/black_last.png) no-repeat 4px 4px;
+	background: url(img/black_last.png) no-repeat 4px 4px;
 }
 
 /* 右侧 */
