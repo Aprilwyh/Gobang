@@ -57,16 +57,16 @@ var cookieHandle = {
 
 
 $(document).ready(function() {
-	fiveChess.init();
+	goBang.init();
 });
 
-var fiveChess = {
-	NO_CHESS: 0,
-	BLACK_CHESS: -1,
-	WHITE_CHESS: 1,
+var goBang = {
+	NO_CHESS: 0,	//没有棋子
+	BLACK_CHESS: -1,	//黑色棋子
+	WHITE_CHESS: 1,		//白色棋子
 	chessArr: [],	//记录棋子
 	chessBoardHtml: "",
-	humanPlayer: "black",	//玩家棋子颜色
+	humanPlayer: "black",	//玩家棋子颜色（默认黑色）
 	AIPlayer: "white",	//AI棋子颜色
 	isPlayerTurn: true, //轮到player下棋
 	totalGames: cookieHandle.getCookie("totalGames") || 0,	//总局数
@@ -78,34 +78,34 @@ var fiveChess = {
 
 	init: function () {
 		this.chessBoardHtml = $("div.chessboard").html();
-		var _fiveChess = this;
+		var _goBangChess = this;
 		//右侧操作按钮
 		$(".operating-panel a").click(function (event) {
 			event.preventDefault();
 			var id = $(this).attr("id");
-			if (_fiveChess.isGameStart && id !== "replay_btn" ) { return; }	//正在游戏 不操作
+			if (_goBangChess.isGameStart && id !== "replay_btn" ) { return; }	//正在游戏 不操作
 			switch (id) {
 				case "black_btn":
-					_fiveChess.humanPlayer = "black";
-					_fiveChess.AIPlayer = "white";
+					_goBangChess.humanPlayer = "black";
+					_goBangChess.AIPlayer = "white";
 					break;
 				case "white_btn":
-					_fiveChess.humanPlayer = "white";
-					_fiveChess.AIPlayer = "black";
+					_goBangChess.humanPlayer = "white";
+					_goBangChess.AIPlayer = "black";
 					break;
 				case "first_move_btn":
-					_fiveChess.isPlayerTurn = true;
+					_goBangChess.isPlayerTurn = true;
 					break;
 				case "second_move_btn":
-					_fiveChess.isPlayerTurn = false;
+					_goBangChess.isPlayerTurn = false;
 					break;
 				case "replay_btn":
-					_fiveChess.resetChessBoard();
-					if (_fiveChess.isGameStart) {	//点重玩
-						_fiveChess.gameOver();
+					_goBangChess.resetChessBoard();
+					if (_goBangChess.isGameStart) {	//点重玩
+						_goBangChess.gameOver();
 					}
 					else {	//点开始
-						_fiveChess.gameStart();
+						_goBangChess.gameStart();
 					}
 					break;
 			}
@@ -131,19 +131,19 @@ var fiveChess = {
 			}
 		}
 		//player下棋事件
-		var _fiveChess = this;
+		var _goBangChess = this;
 		$("div.chessboard div").click(function () {
-			if (!_fiveChess.isPlayerTurn || _fiveChess.isGameOver) {
+			if (!_goBangChess.isPlayerTurn || _goBangChess.isGameOver) {
 				return;
 			}
-			if (!_fiveChess.isGameStart) {
-				_fiveChess.gameStart();
+			if (!_goBangChess.isGameStart) {
+				_goBangChess.gameStart();
 			}
 			var index = $(this).index(),
 				i = index / 15 | 0,
 				j = index % 15;
-			if (_fiveChess.chessArr[i][j] === _fiveChess.NO_CHESS) {
-				_fiveChess.playChess(i, j, _fiveChess.humanPlayer);
+			if (_goBangChess.chessArr[i][j] === _goBangChess.NO_CHESS) {
+				_goBangChess.playChess(i, j, _goBangChess.humanPlayer);
 				if (i === 0 && j === 0) {
 					$(this).removeClass("hover-up-left");
 				}
@@ -171,18 +171,18 @@ var fiveChess = {
 				else {
 					$(this).removeClass("hover");
 				}
-				_fiveChess.playerLastChess = [i, j];
-				_fiveChess.playerWinOrNot(i, j);
+				_goBangChess.playerLastChess = [i, j];
+				_goBangChess.playerWinOrNot(i, j);
 			}
 		});
 		//鼠标在棋盘上移动效果
 		$("div.chessboard div").hover(
 			function () {
-				if (!_fiveChess.isPlayerTurn || _fiveChess.isGameOver) { return; }
+				if (!_goBangChess.isPlayerTurn || _goBangChess.isGameOver) { return; }
 				var index = $(this).index(),
 					i = index / 15 | 0,
 					j = index % 15;
-				if (_fiveChess.chessArr[i][j] === _fiveChess.NO_CHESS) {
+				if (_goBangChess.chessArr[i][j] === _goBangChess.NO_CHESS) {
 					if (i === 0 && j === 0) {
 						$(this).addClass("hover-up-left");
 					}
@@ -213,7 +213,7 @@ var fiveChess = {
 				}
 			},
 			function () {
-				if (!_fiveChess.isPlayerTurn || _fiveChess.isGameOver) { return; }
+				if (!_goBangChess.isPlayerTurn || _goBangChess.isGameOver) { return; }
 				var index = $(this).index(),
 					i = index / 15 | 0,
 					j = index % 15;
@@ -384,6 +384,10 @@ var fiveChess = {
 	},
 	//AI下棋
 	AImoveChess: function () {
+		if(1==1){
+			this.isPlayerTurn = false;
+			this.AIisPlayerChess();
+		}else{
 		this.isPlayerTurn = false;
 		var maxX = 0,
 			maxY = 0,
@@ -411,7 +415,135 @@ var fiveChess = {
 		else {
 			this.isPlayerTurn = true;
 		}
+	}
 	},
+//------------------AIisPlayer------------------------------------------
+	AIisPlayerChess: function () {
+		//player下棋事件
+		var _goBangChess = this;
+		$("div.chessboard div").click(function () {
+			if (_goBangChess.isPlayerTurn || _goBangChess.isGameOver) {
+				return;
+			}
+			if (!_goBangChess.isGameStart) {
+				_goBangChess.gameStart();
+			}
+			var index = $(this).index(),
+				i = index / 15 | 0,
+				j = index % 15;
+			if (_goBangChess.chessArr[i][j] === _goBangChess.NO_CHESS) {
+				_goBangChess.playChess(i, j, _goBangChess.AIPlayer);
+				if (i === 0 && j === 0) {
+					$(this).removeClass("hover-up-left");
+				}
+				else if (i === 0 && j === 14) {
+					$(this).removeClass("hover-up-right");
+				}
+				else if (i === 14 && j === 0) {
+					$(this).removeClass("hover-down-left");
+				}
+				else if (i === 14 && j === 14) {
+					$(this).removeClass("hover-down-right");
+				}
+				else if (i === 0) {
+					$(this).removeClass("hover-up");
+				}
+				else if (i === 14) {
+					$(this).removeClass("hover-down");
+				}
+				else if (j === 0) {
+					$(this).removeClass("hover-left");
+				}
+				else if (j === 14) {
+					$(this).removeClass("hover-right");
+				}
+				else {
+					$(this).removeClass("hover");
+				}
+				_goBangChess.AILastChess = [i, j];
+				tem = goBang.computeWeight(i,j);
+				if ((tem >= 100000 && tem < 250000) || (tem >= 500000)) {
+					goBang.showResult(false);
+					goBang.gameOver();
+				}
+				else {
+					goBang.isPlayerTurn = true;
+				}
+			}
+		});
+		//鼠标在棋盘上移动效果
+		$("div.chessboard div").hover(
+			function () {
+				if (_goBangChess.isPlayerTurn || _goBangChess.isGameOver) { return; }
+				var index = $(this).index(),
+					i = index / 15 | 0,
+					j = index % 15;
+				if (_goBangChess.chessArr[i][j] === _goBangChess.NO_CHESS) {
+					if (i === 0 && j === 0) {
+						$(this).addClass("hover-up-left");
+					}
+					else if (i === 0 && j === 14) {
+						$(this).addClass("hover-up-right");
+					}
+					else if (i === 14 && j === 0) {
+						$(this).addClass("hover-down-left");
+					}
+					else if (i === 14 && j === 14) {
+						$(this).addClass("hover-down-right");
+					}
+					else if (i === 0) {
+						$(this).addClass("hover-up");
+					}
+					else if (i === 14) {
+						$(this).addClass("hover-down");
+					}
+					else if (j === 0) {
+						$(this).addClass("hover-left");
+					}
+					else if (j === 14) {
+						$(this).addClass("hover-right");
+					}
+					else {
+						$(this).addClass("hover");
+					}
+				}
+			},
+			function () {
+				if (_goBangChess.isPlayerTurn || _goBangChess.isGameOver) { return; }
+				var index = $(this).index(),
+					i = index / 15 | 0,
+					j = index % 15;
+					if (i === 0 && j === 0) {
+						$(this).removeClass("hover-up-left");
+					}
+					else if (i === 0 && j === 14) {
+						$(this).removeClass("hover-up-right");
+					}
+					else if (i === 14 && j === 0) {
+						$(this).removeClass("hover-down-left");
+					}
+					else if (i === 14 && j === 14) {
+						$(this).removeClass("hover-down-right");
+					}
+					else if (i === 0) {
+						$(this).removeClass("hover-up");
+					}
+					else if (i === 14) {
+						$(this).removeClass("hover-down");
+					}
+					else if (j === 0) {
+						$(this).removeClass("hover-left");
+					}
+					else if (j === 14) {
+						$(this).removeClass("hover-right");
+					}
+					else {
+						$(this).removeClass("hover");
+					}
+			}
+		);
+	},
+//------------------------AIisPlayer------------------------------------------
 	showResult: function(isPlayerWin) {
 		if (isPlayerWin) {
 			$("#result_tips").html("恭喜你获胜！");
