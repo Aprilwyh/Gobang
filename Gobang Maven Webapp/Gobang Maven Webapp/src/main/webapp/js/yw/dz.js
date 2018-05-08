@@ -55,8 +55,13 @@ var cookieHandle = {
     }
 };
 
-
+var isRrdz;
+function isRrdz(){
+	isRrdzParam = $("#isRrdz").val();
+	isRrdz= isRrdzParam=="rrdz";
+};
 $(document).ready(function() {
+	isRrdz();
 	goBang.init();
 });
 
@@ -80,6 +85,10 @@ var goBang = {
 		this.chessBoardHtml = $("div.chessboard").html();
 		var _goBangChess = this;
 		//右侧操作按钮
+		$(".operation a").click(function(event){
+			event.preventDefault();
+			_goBangChess.resetChessBoard();
+		});
 		$(".operating-panel a").click(function (event) {
 			event.preventDefault();
 			var id = $(this).attr("id");
@@ -384,7 +393,7 @@ var goBang = {
 	},
 	//AI下棋
 	AImoveChess: function () {
-		if(1==1){
+		if(isRrdz){
 			this.isPlayerTurn = false;
 			this.AIisPlayerChess();
 		}else{

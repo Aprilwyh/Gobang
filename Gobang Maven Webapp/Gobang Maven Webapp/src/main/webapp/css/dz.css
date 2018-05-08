@@ -116,3 +116,11 @@ div.operating-panel {
 #result_info {
 	margin-bottom: 26px;
 }
+
+div.operation {
+	position: absolute;
+	left: 610px;
+	top: 500px;
+	width: 200px;
+	text-align: center;
+}

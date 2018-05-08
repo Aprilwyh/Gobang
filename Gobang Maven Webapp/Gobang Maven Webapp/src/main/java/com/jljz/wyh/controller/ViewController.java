@@ -36,8 +36,19 @@ public class ViewController {
      * @return 
      */
     @RequestMapping("rjdz")
-    public ModelAndView rrdy(Model model) {
-        return new ModelAndView("pages/rjdz");
+    public ModelAndView rjdy(Model model) {
+        return new ModelAndView("pages/dz");
+    }
+
+    /**
+     * 人人对战
+     * @param target 目标路径(相对地址)
+     * @return 
+     */
+    @RequestMapping("rrdz")
+    public ModelAndView rrdy(Model model, HttpServletRequest request) {
+        request.setAttribute("rrdz", "rrdz");
+        return new ModelAndView("pages/dz");
     }
 
     @RequestMapping("sls")

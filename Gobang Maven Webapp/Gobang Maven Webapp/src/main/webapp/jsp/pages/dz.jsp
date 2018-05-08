@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>人机对战</title>
-	<link rel="stylesheet" type="text/css" href="css/rjdz.css" />
+	<link rel="stylesheet" type="text/css" href="css/dz.css" />
 	<script type="text/javascript" src="js/common/jquery-1.7.2.js"></script>
-	<script type="text/javascript" src="js/yw/rjdz.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/yw/dz.js" charset="utf-8"></script>
 	<!-- <script type="text/javascript" src="js/tx/pgy.js"></script> -->
 </head>
 <body>
@@ -254,6 +255,10 @@
 		<div class="chess-bottom"></div>
 		<div class="chess-bottom chess-right"></div>
 	</div>
+	<div class = "operation">
+		<a id= "resetChessBoard" href="#">清盘</a>
+		<a hidden="hidden" id= "RetractChess" href="#">悔棋</a>
+	</div>
 
 	<div class="operating-panel" hidden="hidden">
 		<p>
@@ -267,12 +272,13 @@
 		<a id="replay_btn" class="btn" href="#">开&nbsp;&nbsp;&nbsp;始</a>
 		<p id="result_info">胜率：100%</p>
 		<p id="result_tips"></p>
+		<input hidden="hidden" id="isRrdz" value="${rrdz}"/>
 	</div>
 
 	<div style="display: none">
 		<!-- 图片需合并 减少http请求数 -->
 		<img src="img/black.png" alt="preload" />
-		<img src="img/white.png" alt="preload" />-0
+		<img src="img/white.png" alt="preload" />
 		<img src="img/hover.png" alt="preload" />
 		<img src="img/hover_up.png" alt="preload" />
 		<img src="img/hover_down.png" alt="preload" />
@@ -288,4 +294,3 @@
 </div>
 </body>
 </html>
-	    		<script></script>
