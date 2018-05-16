@@ -7,7 +7,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>人机对战</title>
 	<link rel="stylesheet" type="text/css" href="css/dz.css" />
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
 	<script type="text/javascript" src="js/common/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/common/common.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/yw/dz.js" charset="utf-8"></script>
 	<!-- <script type="text/javascript" src="js/tx/pgy.js"></script> -->
 </head>
@@ -292,5 +294,14 @@
 		<img src="img/white_last.png" alt="preload" />
 	</div>
 </div>
+<!--遮罩层-->
+	<div class="bgPop"></div>
+	<!--弹出框-->
+	<div class="pop">
+	    <h6 class="selectGame">选择游戏</h6>
+	    <div class = "selectGameDiv" id = 'simple'> 简单</div>
+	    <div class = "selectGameDiv" id = 'commonly'> 一般</div>
+	    <div class = "selectGameDiv" id = 'difficulty'> 困难</div>
+	</div>
 </body>
 </html>

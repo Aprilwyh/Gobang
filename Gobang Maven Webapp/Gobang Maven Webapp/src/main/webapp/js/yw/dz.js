@@ -61,6 +61,7 @@ function isRrdz(){
 	isRrdz= isRrdzParam=="rrdz";
 };
 $(document).ready(function() {
+	pop();
 	isRrdz();
 	goBang.init();
 });
@@ -893,3 +894,4 @@ var goBang = {
 		return weight;
 	}
 };
+

@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- <script type="text/javascript" src="js/tx/pgy.js"></script> -->
   </head>
   
-  <body>
+  <body style="margin:0px">
 	 <div style="width:100%;height:100%;">
 	    <iframe id="contentFrame" name="contentFrame" frameborder="0"
 					scrolling="no" style="width:100%;height:100%;"></iframe>
