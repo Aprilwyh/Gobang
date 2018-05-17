@@ -258,11 +258,14 @@
 		<div class="chess-bottom chess-right"></div>
 	</div>
 	<div class = "operation">
-		<a id= "resetChessBoard" href="#">清盘</a>
-		<a hidden="hidden" id= "RetractChess" href="#">悔棋</a>
+		<div><span style="font-family: STXinwei;color: blue;">难易度：</span><input id ="nyd" readonly="readonly" style="width: 100px;border-radius: 4px;border: 1px solid #eee;"/></div>
+		<div class = "operationBoard" style="text-align: left;padding: 20px;">
+			<a id= "resetChessBoard" href="#">清盘</a>
+			<a id= "RetractChess" href="#">悔棋</a>
+		</div>
 	</div>
 
-	<div class="operating-panel" hidden="hidden">
+	<div class="operating-panel"  hidden="hidden">
 		<p>
 			<a id="black_btn" class="btn selected" href="#">黑&nbsp;&nbsp;子</a>
 			<a id="white_btn" class="btn" href="#">白&nbsp;&nbsp;子</a>
