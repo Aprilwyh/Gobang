@@ -61,8 +61,8 @@ function isRrdz(){
 	isRrdz= isRrdzParam=="rrdz";
 };
 $(document).ready(function() {
-	pop();
 	isRrdz();
+	pop(isRrdz);
 	goBang.init();
 });
 
@@ -128,6 +128,7 @@ var goBang = {
 	},
 	//重置棋盘
 	resetChessBoard: function () {
+		$("#RetractChess").attr("disabled", false); 
 		$("div.chessboard").html(this.chessBoardHtml);
 		$("#result_tips").html("");
 		this.isGameOver = false;
@@ -566,6 +567,7 @@ var goBang = {
 	},
 	//标记显示获胜棋子
 	showWinChesses: function (isPlayerWin) {
+		$("#RetractChess").attr("disabled", true);
 		var nums = 1,	//连续棋子个数
 			lineChess = [],	//连续棋子位置
 			i,
@@ -892,6 +894,34 @@ var goBang = {
 				break;
 		}
 		return weight;
+	},
+	
+	retract: function(){
+		var iplayerLastChess,jplayerLastChess,iAILastChess,jAILastChess;
+		if(this.playerLastChess.length==0&&this.AILastChess.length==0){
+			$.myToast('请先行棋');
+			return;
+		}
+		iplayerLastChess = this.playerLastChess[0];//玩家最后下子位置
+		jplayerLastChess = this.playerLastChess[1];
+		iAILastChess = this.AILastChess[0];//AI最后下子位置
+		jAILastChess = this.AILastChess[1];
+		if(this.chessArr[iplayerLastChess][jplayerLastChess] == this.NO_CHESS &&
+				this.chessArr[iAILastChess][jAILastChess] == this.NO_CHESS){
+			$.myToast('未行棋');
+			return;
+		}
+		if(this.playerLastChess.length!=0){//撤销棋手最后落子
+			this.chessArr[iplayerLastChess][jplayerLastChess] = this.NO_CHESS;
+			$("div.chessboard div:eq(" + (iplayerLastChess * 15 + jplayerLastChess) + ")")
+			.removeClass(this.humanPlayer+"-last").removeClass(this.humanPlayer);
+		}
+		if(this.AILastChess.length!=0){//撤销AI最后落子
+			$("div.chessboard div:eq(" + (iAILastChess * 15 + jAILastChess) + ")")
+			.removeClass(this.AIPlayer+"-last").removeClass(this.AIPlayer);
+		}
+		this.chessArr[iAILastChess][jAILastChess] = this.NO_CHESS;
+		$.myToast('悔棋成功');
 	}
 };
 

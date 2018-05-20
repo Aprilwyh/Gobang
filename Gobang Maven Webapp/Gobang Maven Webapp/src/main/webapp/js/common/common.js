@@ -1,4 +1,8 @@
-function pop(){
+function pop(isRrdz){
+	if(isRrdz){
+		$('.nydIsDisplay').hide();
+		return;
+	}
     $('.bgPop,.pop').show();
   	$('.pop-close').click(function () {
 	    $('.bgPop,.pop').hide();

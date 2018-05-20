@@ -8,9 +8,11 @@
 	<title>人机对战</title>
 	<link rel="stylesheet" type="text/css" href="css/dz.css" />
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/GyUtils.css" />
 	<script type="text/javascript" src="js/common/jquery-1.7.2.js"></script>
 	<script type="text/javascript" src="js/common/common.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/yw/dz.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/common/GyUtils.js" charset="utf-8"></script>
 	<!-- <script type="text/javascript" src="js/tx/pgy.js"></script> -->
 </head>
 <body>
@@ -258,10 +260,10 @@
 		<div class="chess-bottom chess-right"></div>
 	</div>
 	<div class = "operation">
-		<div><span style="font-family: STXinwei;color: blue;">难易度：</span><input id ="nyd" readonly="readonly" style="width: 100px;border-radius: 4px;border: 1px solid #eee;"/></div>
+		<div class="nydIsDisplay"><span style="font-family: STXinwei;color: blue;">难易度：</span><input id ="nyd" readonly="readonly" style="width: 100px;border-radius: 4px;border: 1px solid #eee;"/></div>
 		<div class = "operationBoard" style="text-align: left;padding: 20px;">
-			<a id= "resetChessBoard" href="#">清盘</a>
-			<a id= "RetractChess" href="#">悔棋</a>
+			<button id= "resetChessBoard"  onclick="$.myConfirm({title:'是否清盘',message:'确认清盘吗？清盘后将重新游戏...',callback:function(){goBang.resetChessBoard();}})">清盘</button>
+			<button id= "RetractChess" onclick="$.myConfirm({title:'悔棋',message:'确认悔棋吗',callback:function(){goBang.retract();}})">悔棋</button>
 		</div>
 	</div>
 

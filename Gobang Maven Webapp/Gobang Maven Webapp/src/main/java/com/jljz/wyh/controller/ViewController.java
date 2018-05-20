@@ -51,6 +51,16 @@ public class ViewController {
         return new ModelAndView("pages/dz");
     }
 
+    /**
+     * 介绍
+     * @param target 目标路径(相对地址)
+     * @return 
+     */
+    @RequestMapping("Introduce")
+    public ModelAndView Introduce(Model model, HttpServletRequest request) {
+        return new ModelAndView("pages/Introduce");
+    }
+
     @RequestMapping("sls")
     public ModelAndView sls(Model model) {
         return new ModelAndView("Error/404");
