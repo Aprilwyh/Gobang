@@ -299,7 +299,7 @@
 		<img src="img/white_last.png" alt="preload" />
 	</div>
 </div>
-<!--遮罩层-->
+	<!--遮罩层-->
 	<div class="bgPop"></div>
 	<!--弹出框-->
 	<div class="pop">

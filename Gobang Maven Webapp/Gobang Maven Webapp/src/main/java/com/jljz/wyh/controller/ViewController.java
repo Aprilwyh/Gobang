@@ -7,6 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 
+ * ViewController 控制层
+ * @data 2018-4-15
+ * @author weiyanhui
+ *
+ */
 @Controller
 public class ViewController {
 
@@ -47,7 +54,7 @@ public class ViewController {
      */
     @RequestMapping("rrdz")
     public ModelAndView rrdy(Model model, HttpServletRequest request) {
-        request.setAttribute("rrdz", "rrdz");
+        request.setAttribute("rrdz", "rrdz");//人人对战标识
         return new ModelAndView("pages/dz");
     }
 

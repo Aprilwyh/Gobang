@@ -1,71 +1,28 @@
 /**
- * cookieHandle: 常用cookie操作方法的封装
+ * 五指棋对战js
  * date: 2018-4-15
  * author: weiyanhui
-**/
-var cookieHandle = {
-    //获取cookie中name对应的值
-    getCookie: function (name) {
-        var cookies = document.cookie.split("; "),
-            arr;
-        for (var i = 0, len = cookies.length; i < len;i++) {
-            arr = cookies[i].split("=");
-            if(arr[0] == encodeURIComponent(name)) {
-                return decodeURIComponent(arr[1]);
-            }
-        }
-        return "";
-    },
-    // 设置cookie
-    // option.name: cookie名，必选
-    // option.value: cookie值，必选
-    // option.expiresHours: 过期时间，可选，默认为浏览器关闭即消失
-    // option.path: cookie存放路径，可选。例如"/"、"/shop"。
-    // 默认情况下，如果在某个页面创建了一个cookie，那么该页面所在目录中的其他页面也可以访问该cookie。
-    // 如果这个目录下还有子目录，则在子目录中也可以访问。
-    // 例如在www.jljz.wyh.com/html/a.html中所创建的cookie，
-    // 可以被www.jljz.wyh.com/html/b.html或www.jljz.wyh.com/html/some/c.html所访问，但不能被www.jljz.wyh.com/d.html访问。
-    // option.domain: 可访问该cookie的域名，可选。
-    setCookie: function (option) {
-        var cookieStr = encodeURIComponent(option.name) + "=" + encodeURIComponent(option.value);
-        if (option.expiresHours) {
-            var date = new Date();
-            date.setTime(date.getTime() + option.expiresHours * 3600 * 1000);
-            cookieStr = cookieStr + "; expires=" + date.toUTCString();
-        }
-        if (option.path) {
-            cookieStr = cookieStr + "; path=" + option.path;
-        }
-        if (option.domain) {
-            cookieStr = cookieStr + "; domain=" + option.domain;
-        }
-        document.cookie = cookieStr;
-    },
-    // 删除cookie
-    // name: cookie名，必选
-    // option.path: cookie存放路径，可选
-    // option.domain: 可访问该cookie的域名，可选
-    // 需要注意的是，设置cookie时，如果setCookie传了path、domain，删除时也必选传入这两个参数，否则无法删除cookie
-    // 另外，经测试，如设置了path、domain，删除时需在设置cookie的同一域下删除
-    deleteCookie: function (name, option) {
-        var date = new Date(0);
-        document.cookie = name + "=88; expires=" + date.toUTCString() +
-                            (option.path ? ("; path=" + option.path) : "") +
-                            (option.domain ? ("; domain=" + option.domain) : "");
-    }
-};
-
-var isRrdz;
-function isRrdz(){
-	isRrdzParam = $("#isRrdz").val();
-	isRrdz= isRrdzParam=="rrdz";
-};
+ * 
+ * ready 页面加载完毕执行
+ */
 $(document).ready(function() {
 	isRrdz();
 	pop(isRrdz);
 	goBang.init();
 });
 
+var isRrdz;//是否人机对战标识Boolean
+/**
+ * 判断是否为人人对战
+ * 初始化时调用，直接为isRrdz赋值
+ */
+function isRrdz(){
+	isRrdzParam = $("#isRrdz").val();
+	isRrdz= isRrdzParam=="rrdz";
+};
+/**
+ * goBang 五指棋属性对象
+ */
 var goBang = {
 	NO_CHESS: 0,	//没有棋子
 	BLACK_CHESS: -1,	//黑色棋子
@@ -75,64 +32,27 @@ var goBang = {
 	humanPlayer: "black",	//玩家棋子颜色（默认黑色）
 	AIPlayer: "white",	//AI棋子颜色
 	isPlayerTurn: true, //轮到player下棋
-	totalGames: cookieHandle.getCookie("totalGames") || 0,	//总局数
-	winGames: cookieHandle.getCookie("winGames") || 0,	//玩家赢局数
 	isGameStart: false,	//游戏已经开始
 	isGameOver: false, //游戏结束
 	playerLastChess: [], //玩家最后下子位置
 	AILastChess: [], //AI最后下子位置
-
+	
+	/**
+	 * 初始化方法
+	 */
 	init: function () {
 		this.chessBoardHtml = $("div.chessboard").html();
 		var _goBangChess = this;
-		//右侧操作按钮
-		$(".operation a").click(function(event){
-			event.preventDefault();
-			_goBangChess.resetChessBoard();
-		});
-		$(".operating-panel a").click(function (event) {
-			event.preventDefault();
-			var id = $(this).attr("id");
-			if (_goBangChess.isGameStart && id !== "replay_btn" ) { return; }	//正在游戏 不操作
-			switch (id) {
-				case "black_btn":
-					_goBangChess.humanPlayer = "black";
-					_goBangChess.AIPlayer = "white";
-					break;
-				case "white_btn":
-					_goBangChess.humanPlayer = "white";
-					_goBangChess.AIPlayer = "black";
-					break;
-				case "first_move_btn":
-					_goBangChess.isPlayerTurn = true;
-					break;
-				case "second_move_btn":
-					_goBangChess.isPlayerTurn = false;
-					break;
-				case "replay_btn":
-					_goBangChess.resetChessBoard();
-					if (_goBangChess.isGameStart) {	//点重玩
-						_goBangChess.gameOver();
-					}
-					else {	//点开始
-						_goBangChess.gameStart();
-					}
-					break;
-			}
-			if (id !== "replay_btn") {
-				$(this).addClass("selected").siblings().removeClass("selected");
-			}
-		});
 		this.resetChessBoard();
-		$("#result_info").html("胜率：" + (this.winGames * 100 / this.totalGames | 0) + "%");
 	},
-	//重置棋盘
+	/**
+	 * 重置棋盘
+	 */
 	resetChessBoard: function () {
 		$("#RetractChess").attr("disabled", false); 
 		$("div.chessboard").html(this.chessBoardHtml);
-		$("#result_tips").html("");
 		this.isGameOver = false;
-		this.isPlayerTurn = $("#first_move_btn").hasClass("selected");
+		this.isPlayerTurn = true;
 		//初始化棋子状态
 		var i, j;
 		for (i = 0; i < 15; i++) {
@@ -141,52 +61,13 @@ var goBang = {
 				this.chessArr[i][j] = this.NO_CHESS;
 			}
 		}
-		//player下棋事件
+		this.hoverChessBoard();
+		this.clickChessBoard();
+	},
+	
+	hoverChessBoard: function (){
 		var _goBangChess = this;
-		$("div.chessboard div").click(function () {
-			if (!_goBangChess.isPlayerTurn || _goBangChess.isGameOver) {
-				return;
-			}
-			if (!_goBangChess.isGameStart) {
-				_goBangChess.gameStart();
-			}
-			var index = $(this).index(),
-				i = index / 15 | 0,
-				j = index % 15;
-			if (_goBangChess.chessArr[i][j] === _goBangChess.NO_CHESS) {
-				_goBangChess.playChess(i, j, _goBangChess.humanPlayer);
-				if (i === 0 && j === 0) {
-					$(this).removeClass("hover-up-left");
-				}
-				else if (i === 0 && j === 14) {
-					$(this).removeClass("hover-up-right");
-				}
-				else if (i === 14 && j === 0) {
-					$(this).removeClass("hover-down-left");
-				}
-				else if (i === 14 && j === 14) {
-					$(this).removeClass("hover-down-right");
-				}
-				else if (i === 0) {
-					$(this).removeClass("hover-up");
-				}
-				else if (i === 14) {
-					$(this).removeClass("hover-down");
-				}
-				else if (j === 0) {
-					$(this).removeClass("hover-left");
-				}
-				else if (j === 14) {
-					$(this).removeClass("hover-right");
-				}
-				else {
-					$(this).removeClass("hover");
-				}
-				_goBangChess.playerLastChess = [i, j];
-				_goBangChess.playerWinOrNot(i, j);
-			}
-		});
-		//鼠标在棋盘上移动效果
+		//鼠标在棋盘上移动效果 绑定鼠标悬停事件 .hover(IN进，OUT出)
 		$("div.chessboard div").hover(
 			function () {
 				if (!_goBangChess.isPlayerTurn || _goBangChess.isGameOver) { return; }
@@ -258,27 +139,78 @@ var goBang = {
 			}
 		);
 	},
+	clickChessBoard:function (){
+		//player下棋事件 绑定click点击事件
+		var _goBangChess = this;
+		$("div.chessboard div").click(function () {
+			if (!_goBangChess.isPlayerTurn || _goBangChess.isGameOver) {
+				return;
+			}
+			if (!_goBangChess.isGameStart) {
+				_goBangChess.gameStart();
+			}
+			var index = $(this).index(),
+				i = index / 15 | 0,
+				j = index % 15;
+			if (_goBangChess.chessArr[i][j] === _goBangChess.NO_CHESS) {
+				_goBangChess.playChess(i, j, _goBangChess.humanPlayer);
+				if (i === 0 && j === 0) {
+					$(this).removeClass("hover-up-left");
+				}
+				else if (i === 0 && j === 14) {
+					$(this).removeClass("hover-up-right");
+				}
+				else if (i === 14 && j === 0) {
+					$(this).removeClass("hover-down-left");
+				}
+				else if (i === 14 && j === 14) {
+					$(this).removeClass("hover-down-right");
+				}
+				else if (i === 0) {
+					$(this).removeClass("hover-up");
+				}
+				else if (i === 14) {
+					$(this).removeClass("hover-down");
+				}
+				else if (j === 0) {
+					$(this).removeClass("hover-left");
+				}
+				else if (j === 14) {
+					$(this).removeClass("hover-right");
+				}
+				else {
+					$(this).removeClass("hover");
+				}
+				_goBangChess.playerLastChess = [i, j];
+				_goBangChess.playerWinOrNot(i, j);
+			}
+		});
+	},
+	/**
+	 * 游戏开始
+	 */
 	gameStart: function () {
-		this.totalGames++;
-		cookieHandle.setCookie({ name: "totalGames", value: this.totalGames, expiresHours: 365 * 24 });
 		//AI先手
 		if (!this.isPlayerTurn) {
 			this.AImoveChess();
 		}
 		this.isGameStart = true;
-		$(".operating-panel p a").addClass("disable");
-		$("#replay_btn").html("重&nbsp;&nbsp;&nbsp;玩");
 	},
+	/**
+	 * 游戏结束
+	 */
 	gameOver: function () {
 		this.isGameStart = false;
-		$(".operating-panel a").removeClass("disable");
-		$("#replay_btn").html("开&nbsp;&nbsp;&nbsp;始");
-		$("#result_info").html("胜率：" + (this.winGames * 100 / this.totalGames | 0) + "%");
 	},
-
-	//下棋 i行，j列，color颜色
+	/**
+	 * 行棋 
+	 * @param i 行
+	 * @param j 列
+	 * @param color 棋子颜色
+	 */
 	playChess: function (i, j, color) {
 		this.chessArr[i][j] = color === "black" ? this.BLACK_CHESS : this.WHITE_CHESS;
+		var lastChess = color !== "black" ? "black" : "white";
 		if (color === this.AIPlayer) {
 			$("div.chessboard div." + color + "-last").addClass(color).removeClass(color + "-last");
 			$("div.chessboard div:eq(" + (i * 15 + j) + ")").addClass(color + "-last");
@@ -287,7 +219,11 @@ var goBang = {
 			$("div.chessboard div:eq(" + (i * 15 + j) + ")").addClass(color);
 		}
 	},
-	//玩家是否取胜
+	/**
+	 * 判读玩家是否赢了
+	 * @param i 最后一个棋子的位置
+	 * @param j
+	 */
 	playerWinOrNot: function (i, j) {
 		var nums = 1,	//连续棋子个数
 			chessColor = this.humanPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS,
@@ -388,14 +324,14 @@ var goBang = {
 		this.AImoveChess();
 	},
 	playerWin: function () {
-		this.winGames++;
-		cookieHandle.setCookie({ name: "winGames", value: this.winGames, expiresHours: 365 * 24 });
 		this.showResult(true);
 		this.gameOver();
 	},
-	//AI下棋
+	/**
+	 * AI下棋 如果是人人，AI不下改由对方下
+	 */
 	AImoveChess: function () {
-		if(isRrdz){
+		if(isRrdz){//是人人 对战
 			this.isPlayerTurn = false;
 			this.AIisPlayerChess();
 		}else{
@@ -429,6 +365,9 @@ var goBang = {
 	}
 	},
 //------------------AIisPlayer------------------------------------------
+	/**
+	 * 人人对战 令一人下棋
+	 */
 	AIisPlayerChess: function () {
 		//player下棋事件
 		var _goBangChess = this;
@@ -557,10 +496,10 @@ var goBang = {
 //------------------------AIisPlayer------------------------------------------
 	showResult: function(isPlayerWin) {
 		if (isPlayerWin) {
-			$("#result_tips").html("恭喜你获胜！");
+//			$("#result_tips").html("恭喜你获胜！");
 		}
 		else {
-			$("#result_tips").html("哈哈，你输咯！");
+//			$("#result_tips").html("哈哈，你输咯！");
 		}
 		this.isGameOver = true;
 		this.showWinChesses(isPlayerWin);
