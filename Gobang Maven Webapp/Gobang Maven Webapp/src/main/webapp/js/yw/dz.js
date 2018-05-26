@@ -64,7 +64,9 @@ var goBang = {
 		this.hoverChessBoard();
 		this.clickChessBoard();
 	},
-	
+	/**
+	 * 鼠标悬浮效果
+	 */
 	hoverChessBoard: function (){
 		var _goBangChess = this;
 		//鼠标在棋盘上移动效果 绑定鼠标悬停事件 .hover(IN进，OUT出)
@@ -139,6 +141,9 @@ var goBang = {
 			}
 		);
 	},
+	/**
+	 * 点击下子
+	 */
 	clickChessBoard:function (){
 		//player下棋事件 绑定click点击事件
 		var _goBangChess = this;
@@ -221,99 +226,88 @@ var goBang = {
 	},
 	/**
 	 * 判读玩家是否赢了
-	 * @param i 最后一个棋子的位置
-	 * @param j
+	 * @param i 最后一个棋子的位置 上下左边
+	 * @param j 最后一个棋子的位置 左右坐标
 	 */
 	playerWinOrNot: function (i, j) {
 		var nums = 1,	//连续棋子个数
 			chessColor = this.humanPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS,
 			m, n;
 		//x方向
-		for (m = j - 1; m >= 0; m--) {
+		for (m = j - 1; m >= 0; m--) {//→
 			if (this.chessArr[i][m] === chessColor) {
 				nums++;
-			}
-			else {
+			}else {
 				break;
 			}
 		}
-		for (m = j + 1; m < 15; m++) {
+		for (m = j + 1; m < 15; m++) {//←
 			if (this.chessArr[i][m] === chessColor) {
 				nums++;
-			}
-			else {
+			}else {
 				break;
 			}
 		}
 		if (nums >= 5) {
 			this.playerWin();
 			return;
-		}
-		else {
+		}else {
 			nums = 1;
 		}
 		//y方向
-		for (m = i - 1; m >= 0; m--) {
+		for (m = i - 1; m >= 0; m--) {//↑
 			if (this.chessArr[m][j] === chessColor) {
 				nums++;
-			}
-			else {
+			}else {
 				break;
 			}
 		}
-		for (m = i + 1; m < 15; m++) {
+		for (m = i + 1; m < 15; m++) {//↓
 			if (this.chessArr[m][j] === chessColor) {
 				nums++;
-			}
-			else {
+			}else {
 				break;
 			}
 		}
 		if (nums >= 5) {
 			this.playerWin();
 			return;
-		}
-		else {
+		}else {
 			nums = 1;
 		}
 		//左斜方向
-		for (m = i - 1, n = j - 1; m >= 0 && n >= 0; m--, n--) {
+		for (m = i - 1, n = j - 1; m >= 0 && n >= 0; m--, n--) {//↖
 			if (this.chessArr[m][n] === chessColor) {
 				nums++;
-			}
-			else {
+			}else {
 				break;
 			}
 		}
-		for (m = i + 1, n = j + 1; m < 15 && n < 15; m++, n++) {
+		for (m = i + 1, n = j + 1; m < 15 && n < 15; m++, n++) {//↘
 			if (this.chessArr[m][n] === chessColor) {
 				nums++;
-			}
-			else {
+			}else {
 				break;
 			}
 		}
 		if (nums >= 5) {
 			this.playerWin();
 			return;
-		}
-		else {
+		}else {
 			nums = 1;
 		}
 		//右斜方向
-		for (m = i - 1, n = j + 1; m >= 0 && n < 15; m--, n++) {
+		for (m = i - 1, n = j + 1; m >= 0 && n < 15; m--, n++) {//↗
 			if (this.chessArr[m][n] === chessColor) {
 				nums++;
-			}
-			else {
+			}else {
 				break;
 			}
 		}
-		for (m = i + 1, n = j - 1; m < 15 && n >= 0; m++, n--) {
+		for (m = i + 1, n = j - 1; m < 15 && n >= 0; m++, n--) {//↙
 			if (this.chessArr[m][n] === chessColor) {
 				nums++;
-			}
-			else {
+			}else {
 				break;
 			}
 		}
@@ -340,8 +334,8 @@ var goBang = {
 			maxY = 0,
 			maxWeight = 0,
 			i, j, tem;
-		for (i = 14; i >= 0; i--) {
-			for (j = 14; j >= 0; j--) {
+		for (i = 14; i >= 0; i--) {//从下往上
+			for (j = 14; j >= 0; j--) {//从左往右
 				if (this.chessArr[i][j] !== this.NO_CHESS) {
 					continue;
 				}
@@ -494,6 +488,9 @@ var goBang = {
 		);
 	},
 //------------------------AIisPlayer------------------------------------------
+	/**
+	 * 显示游戏结果
+	 */
 	showResult: function(isPlayerWin) {
 		if (isPlayerWin) {
 //			$("#result_tips").html("恭喜你获胜！");
@@ -504,7 +501,10 @@ var goBang = {
 		this.isGameOver = true;
 		this.showWinChesses(isPlayerWin);
 	},
-	//标记显示获胜棋子
+	/**
+	 * 标记显示获胜棋子
+	 * @param isPlayerWin 是否玩家获胜
+	 */
 	showWinChesses: function (isPlayerWin) {
 		$("#RetractChess").attr("disabled", true);
 		var nums = 1,	//连续棋子个数
@@ -834,7 +834,9 @@ var goBang = {
 		}
 		return weight;
 	},
-	
+	/**
+	 * 悔棋
+	 */
 	retract: function(){
 		var iplayerLastChess,jplayerLastChess,iAILastChess,jAILastChess;
 		if(this.playerLastChess.length==0&&this.AILastChess.length==0){
@@ -861,6 +863,10 @@ var goBang = {
 		}
 		this.chessArr[iAILastChess][jAILastChess] = this.NO_CHESS;
 		$.myToast('悔棋成功');
+	},
+	giveUp: function(){
+		var _goBangChess = this;
+		_goBangChess.isGameOver= true; //游戏结束
 	}
 };
 

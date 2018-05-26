@@ -1,5 +1,9 @@
+/*
+ * Navigation: 导航css 
+ * date: 2018-4-15
+ * author: weiyanhui
+*/
 @CHARSET "UTF-8";
-
 navigation-bar > a:link,
 navigation-bar > a:hover,
 navigation-bar > a:visited,
@@ -7,16 +11,6 @@ navigation-bar > a:active {
   color: #fff;
   text-decoration: none;
 }
-
-/* body {
-  height: 1%;
-  width: 1%;
-  margin: 0;
-  padding: 0;
-  
-  background: #fff;
-} */
-
 .card-holder {  
   margin-top:90px;
   position: fixed;

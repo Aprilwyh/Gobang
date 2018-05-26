@@ -10,25 +10,15 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * 
  * ViewController 控制层
+ * description 页面跳转控制器
  * @data 2018-4-15
  * @author weiyanhui
  *
  */
 @Controller
 public class ViewController {
-
-    @RequestMapping("/view")
-    public ModelAndView view(HttpServletRequest request) {
-        String path = request.getParameter("path") + "";
-        ModelAndView mav = new ModelAndView();
-        String contextPath = request.getContextPath();
-        mav.addObject("contextPath", contextPath);
-        mav.setViewName(path);
-        return mav;
-    }
-
     /**
-     * 页面跳转控制器
+     * 页面跳转控制器 首页
      * @param target 目标路径(相对地址)
      * @return 
      */
@@ -38,7 +28,7 @@ public class ViewController {
     }
 
     /**
-     * 人机对战
+     * 页面跳转控制器  人机对战
      * @param target 目标路径(相对地址)
      * @return 
      */
@@ -48,7 +38,7 @@ public class ViewController {
     }
 
     /**
-     * 人人对战
+     * 页面跳转控制器 人人对战
      * @param target 目标路径(相对地址)
      * @return 
      */
@@ -59,7 +49,7 @@ public class ViewController {
     }
 
     /**
-     * 介绍
+     * 页面跳转控制器 介绍
      * @param target 目标路径(相对地址)
      * @return 
      */
@@ -68,11 +58,21 @@ public class ViewController {
         return new ModelAndView("pages/Introduce");
     }
 
+    /**
+     * 页面跳转控制器 404
+     * @param model
+     * @return
+     */
     @RequestMapping("sls")
     public ModelAndView sls(Model model) {
         return new ModelAndView("Error/404");
     }
 
+    /**
+     * 页面跳转控制器 开发中
+     * @param model
+     * @return
+     */
     @RequestMapping("kfz")
     public ModelAndView jsz(Model model) {
         return new ModelAndView("Error/kfz");

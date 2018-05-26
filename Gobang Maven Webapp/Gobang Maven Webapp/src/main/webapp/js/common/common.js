@@ -11,6 +11,7 @@
 function pop(isRrdz){
 	if(isRrdz){
 		$('.nydIsDisplay').hide();
+		$('#giveUp').hide();
 		return;
 	}
     $('.bgPop,.pop').show();

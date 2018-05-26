@@ -1,4 +1,7 @@
-/* prompt box 提示框 BEGIN
+/**
+ * GyUtils 共用
+ * 
+ * prompt box 提示框 BEGIN
  * 依赖jQuery GyUtils.css
  * 调用方式：
  * <button onClick="$.myAlert('这里是提示框内的内容');">点击弹出提示框</button>

@@ -17,6 +17,7 @@
 </head>
 <body>
 <div class="wrapper" style="margin: auto;">
+	<!-- 棋盘 -->
 	<div class="chessboard">
 		<!-- top line -->
 		<div class="chess-top"></div>
@@ -259,29 +260,17 @@
 		<div class="chess-bottom"></div>
 		<div class="chess-bottom chess-right"></div>
 	</div>
+	<!-- 操作 -->
 	<div class = "operation">
 		<div class="nydIsDisplay"><span style="font-family: STXinwei;color: blue;">难易度：</span><input id ="nyd" readonly="readonly" style="width: 100px;border-radius: 4px;border: 1px solid #eee;"/></div>
 		<div class = "operationBoard" style="text-align: left;padding: 20px;">
-			<button id= "resetChessBoard"  onclick="$.myConfirm({title:'是否清盘',message:'确认清盘吗？清盘后将重新游戏...',callback:function(){goBang.resetChessBoard();}})">清盘</button>
-			<button id= "RetractChess" onclick="$.myConfirm({title:'悔棋',message:'确认悔棋吗',callback:function(){goBang.retract();}})">悔棋</button>
+			<button id= "resetChessBoard"  onclick="$.myConfirm({title:'清盘提示',message:'确认清盘吗？清盘后将重新游戏...',callback:function(){goBang.resetChessBoard();}})">清盘</button>
+			<button id= "giveUp"  onclick="$.myConfirm({title:'认输提示',message:'确认认输吗',callback:function(){goBang.giveUp();}})">认输</button>
+			<button id= "RetractChess" onclick="$.myConfirm({title:'悔棋提示',message:'确认悔棋吗',callback:function(){goBang.retract();}})">悔棋</button>
 		</div>
-	</div>
-
-	<div class="operating-panel"  hidden="hidden">
-		<p>
-			<a id="black_btn" class="btn selected" href="#">黑&nbsp;&nbsp;子</a>
-			<a id="white_btn" class="btn" href="#">白&nbsp;&nbsp;子</a>
-		</p>
-		<p>
-			<a id="first_move_btn" class="btn selected" href="#">先&nbsp;&nbsp;手</a>
-			<a id="second_move_btn" class="btn" href="#">后&nbsp;&nbsp;手</a>
-		</p>
-		<a id="replay_btn" class="btn" href="#">开&nbsp;&nbsp;&nbsp;始</a>
-		<p id="result_info">胜率：100%</p>
-		<p id="result_tips"></p>
 		<input hidden="hidden" id="isRrdz" value="${rrdz}"/>
 	</div>
-
+	<!-- 图片请求 不会在页面显示 -->
 	<div style="display: none">
 		<!-- 图片需合并 减少http请求数 -->
 		<img src="img/black.png" alt="preload" />
@@ -299,14 +288,15 @@
 		<img src="img/white_last.png" alt="preload" />
 	</div>
 </div>
-	<!--遮罩层-->
-	<div class="bgPop"></div>
-	<!--弹出框-->
-	<div class="pop">
-	    <h6 class="selectGame">选择游戏</h6>
-	    <div class = "selectGameDiv" id = 'simple'> 简单</div>
-	    <div class = "selectGameDiv" id = 'commonly'> 一般</div>
-	    <div class = "selectGameDiv" id = 'difficulty'> 困难</div>
-	</div>
+<!-- 难易度弹窗 -->
+<!--遮罩层-->
+<div class="bgPop"></div>
+<!--弹出框-->
+<div class="pop">
+    <h6 class="selectGame">选择游戏</h6>
+    <div class = "selectGameDiv" id = 'simple'> 简单</div>
+    <div class = "selectGameDiv" id = 'commonly'> 一般</div>
+    <div class = "selectGameDiv" id = 'difficulty'> 困难</div>
+</div>
 </body>
 </html>

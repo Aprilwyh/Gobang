@@ -1,3 +1,8 @@
+/* 
+ * pop: 页面弹出层css 
+ * date: 2018-5-17
+ * author: weiyanhui
+ */
 @CHARSET "UTF-8";
 .pop {  display: none;  width: 250px; min-height: 177px;  max-height: 250px;  height:177px;  position: absolute;  top: 0;  left: 0;  bottom: 0;  right: 0;  margin: auto;  padding: 0px;  z-index: 130;  border-radius: 8px;  background-color: #fff;border-bottom: 10px solid #f2f2f2; margin-top: 215px;}
 .bgPop{  display: none;  position: absolute;  z-index: 129;  left: 0;  top: 0;  width: 100%;  height: 100%;  background: rgba(0,0,0,0.2);  }
