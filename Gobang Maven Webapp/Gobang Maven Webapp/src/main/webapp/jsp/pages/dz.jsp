@@ -262,12 +262,22 @@
 	</div>
 	<!-- 操作 -->
 	<div class = "operation">
-		<div class="nydIsDisplay"><span style="font-family: STXinwei;color: blue;">难易度：</span><input id ="nyd" readonly="readonly" style="width: 100px;border-radius: 4px;border: 1px solid #eee;"/></div>
-		<div class = "operationBoard" style="text-align: left;padding: 20px;">
-			<button id= "resetChessBoard"  onclick="$.myConfirm({title:'清盘提示',message:'确认清盘吗？清盘后将重新游戏...',callback:function(){goBang.resetChessBoard();}})">清盘</button>
-			<button id= "giveUp"  onclick="$.myConfirm({title:'认输提示',message:'确认认输吗',callback:function(){goBang.giveUp();}})">认输</button>
-			<button id= "RetractChess" onclick="$.myConfirm({title:'悔棋提示',message:'确认悔棋吗',callback:function(){goBang.retract();}})">悔棋</button>
+		<div class="simple" hidden="hidden">
+			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
+			<div><img src="img/gray.png" alt="nydIsDisplay1"/></div>
+			<div><img src="img/gray.png" alt="nydIsDisplay1"/></div>
 		</div>
+		<div class="commonly">
+			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
+			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
+			<div><img src="img/gray.png" alt="nydIsDisplay1"/></div>
+		</div>
+		<div class="difficulty" hidden="hidden">
+			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
+			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
+			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
+		</div>
+		<div class="nydIsDisplay" hidden="hidden"><span style="font-family: STXinwei;color: blue;">当前游戏：</span><input id ="nyd" readonly="readonly" style="width: 100px;border-radius: 4px;border: 1px solid #eee;"/></div>
 		<input hidden="hidden" id="isRrdz" value="${rrdz}"/>
 	</div>
 	<!-- 图片请求 不会在页面显示 -->
@@ -288,15 +298,34 @@
 		<img src="img/white_last.png" alt="preload" />
 	</div>
 </div>
+
 <!-- 难易度弹窗 -->
 <!--遮罩层-->
 <div class="bgPop"></div>
 <!--弹出框-->
 <div class="pop">
-    <h6 class="selectGame">选择游戏</h6>
+    <h6 class="selectGame">选择难易度</h6>
     <div class = "selectGameDiv" id = 'simple'> 简单</div>
     <div class = "selectGameDiv" id = 'commonly'> 一般</div>
     <div class = "selectGameDiv" id = 'difficulty'> 困难</div>
+</div>
+
+<!--右侧悬浮菜单-->
+<div class="slideRight">
+<div class="slide">
+	</ul>
+		<ul class="info">
+			<li class="buttton">
+				<p><a href="#" id= "resetChessBoard"  onclick="$.myConfirm({title:'清盘提示',message:'确认清盘吗？清盘后将重新游戏...',callback:function(){goBang.resetChessBoard();}})">清盘</a></p>
+			</li>
+			<li class="buttton" id='giveUpLi'>
+				<p><a href="#" id= "giveUp"  onclick="$.myConfirm({title:'认输提示',message:'确认认输吗',callback:function(){goBang.giveUp();}})">认输</a></p>
+			</li>
+			<li class="buttton">
+				<p><a href="#" id= "RetractChess" onclick="$.myConfirm({title:'悔棋提示',message:'确认悔棋吗',callback:function(){goBang.retract();}})">悔棋</a></p>
+			</li>
+		</ul>
+	</div>
 </div>
 </body>
 </html>

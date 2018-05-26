@@ -10,8 +10,8 @@
  */
 function pop(isRrdz){
 	if(isRrdz){
-		$('.nydIsDisplay').hide();
-		$('#giveUp').hide();
+		$('.operation').hide();
+		$('#giveUpLi').hide();
 		return;
 	}
     $('.bgPop,.pop').show();
@@ -39,12 +39,34 @@ function pop(isRrdz){
 	$('.selectGameDiv').click(function () {
 	    $('.bgPop,.pop').hide();
 	    var clickedGameDivId = $(this).attr("id");
+	    $(".commonly").hide();
 	    if(clickedGameDivId=="simple"){
 	    	$("#nyd").val("简单");
+	    	$(".simple").show();
 	    }else if(clickedGameDivId=="difficulty"){
 	    	$("#nyd").val("困难");
+	    	$(".difficulty").show();
 	    }else{
 	    	$("#nyd").val("一般");
+	    	$(".commonly").show();
 	    }
 	});
 }
+/**
+ * 退出游戏
+ */
+function closewin(){
+	self.opener=null;
+	self.close();
+}
+/**
+ * 操作栏
+ */
+$(function(){
+	$('.slide').mouseenter(function(){
+		$('.slide .info').addClass('hover');
+	});
+	$('.slide').mouseleave(function(){
+		$('.slide .info').removeClass('hover');
+	});	
+});

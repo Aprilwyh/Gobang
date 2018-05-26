@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>五指棋博弈游戏</title>
+    <title>五子棋对弈游戏</title>
 <!-- 	
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	 -->

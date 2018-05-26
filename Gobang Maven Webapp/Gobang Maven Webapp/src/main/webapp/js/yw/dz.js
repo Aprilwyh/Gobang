@@ -1,5 +1,5 @@
 /**
- * 五指棋对战js
+ * 五子棋对战js
  * date: 2018-4-15
  * author: weiyanhui
  * 
@@ -21,7 +21,7 @@ function isRrdz(){
 	isRrdz= isRrdzParam=="rrdz";
 };
 /**
- * goBang 五指棋属性对象
+ * goBang 五子棋属性对象
  */
 var goBang = {
 	NO_CHESS: 0,	//没有棋子
@@ -765,7 +765,12 @@ var goBang = {
 		}
 		return {"nums": nums, "side1": side1, "side2": side2};
 	},
-	//计算下子至i,j的权重
+	/**
+	 * 计算下子至i,j的权重 
+	 * @param i
+	 * @param j
+	 * @returns {Number}
+	 */
 	computeWeight: function (i, j) {
 		var weight = 14 - (Math.abs(i - 7) + Math.abs(j - 7)), //基于棋盘位置权重
 			pointInfo = {},	//某点下子后连子信息
@@ -792,7 +797,14 @@ var goBang = {
 		weight += this.weightStatus(pointInfo.nums, pointInfo.side1, pointInfo.side2, false);//player下子权重
 		return weight;
 	},
-	//权重方案   独：两边为空可下子，单：一边为空
+	/**
+	 * 权重方案   独：两边为空可下子，单：一边为空
+	 * @param nums
+	 * @param side1
+	 * @param side2
+	 * @param isAI
+	 * @returns {Number}
+	 */
 	weightStatus: function (nums, side1, side2, isAI) {
 		var weight = 0;
 		switch (nums) {

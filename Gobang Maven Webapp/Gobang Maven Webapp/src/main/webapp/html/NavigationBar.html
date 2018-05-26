@@ -4,6 +4,10 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
   <!-- <title>左侧导航</title> -->
     <link rel="stylesheet" href="css/NavigationBar.css" media="screen" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/GyUtils.css" />
+    <script type="text/javascript" src="js/common/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="js/common/common.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/common/GyUtils.js" charset="utf-8"></script>
 </head>
 
 <body class="navigation-bar">
@@ -11,7 +15,7 @@
   <div class='card-wrapper'>
     <a href='Introduce.do' target="contentFrame">
       <div class='card bg-01'>
-        <span class='card-content'>五指棋博弈说明</span>
+        <span class='card-content'>五子棋对弈说明</span>
       </div>
     </a>
   </div>
@@ -30,9 +34,9 @@
     </a>
   </div>
   <div class='card-wrapper'>
-    <a href='kfz.do'>
+    <a href='#' class = 'goOut' onclick="$.myConfirm({title:'提示',message:'是否退出游戏',callback:function(){closewin();}});return false;">
       <div class='card bg-04'>
-        <span class='card-content'>大闯关</span>
+        <span class='card-content'>退出游戏</span>
       </div>
     </a>
   </div>

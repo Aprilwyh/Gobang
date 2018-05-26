@@ -1,12 +1,108 @@
 /* 
- * pop: 页面弹出层css 
+ * common: 共用css 
  * date: 2018-5-17
  * author: weiyanhui
  */
 @CHARSET "UTF-8";
+/* pop 难易度弹出层 */
 .pop {  display: none;  width: 250px; min-height: 177px;  max-height: 250px;  height:177px;  position: absolute;  top: 0;  left: 0;  bottom: 0;  right: 0;  margin: auto;  padding: 0px;  z-index: 130;  border-radius: 8px;  background-color: #fff;border-bottom: 10px solid #f2f2f2; margin-top: 215px;}
 .bgPop{  display: none;  position: absolute;  z-index: 129;  left: 0;  top: 0;  width: 100%;  height: 100%;  background: rgba(0,0,0,0.2);  }
 .selectGame{ margin:0px; background: #f2f2f2; padding: 10px; line-height: 20px; font-size: 16px;text-align: left;  border-top-left-radius:8px;border-top-right-radius:8px;}
 .selectGameDiv{ height:45px; line-height: 45px; font-size: 16px;text-align: left;padding-left: 10px;vertical-align: middle; }
 #commonly{border-top:2px solid #eae5f5;border-bottom:1px solid #eae5f5;}
 .selectedGameDiv{ background-color: #eae5f5; height:45px; line-height: 45px; font-size: 16px;text-align: left;padding-left: 10px;vertical-align: middle; }
+
+/* 右侧操作按钮 */
+.slideRight{
+	position: relative;
+	background: #EFF2F4;
+	font: normal 13px "宋体" !important;
+}
+.slideRight div,ul,li,p,a,img{
+	padding: 0;
+	margin: 0;
+}
+/*右侧悬浮菜单*/
+.slideRight .slide{
+	width: 5px;
+	height: 250px;
+	position: fixed;
+	top: 10%;
+	background: #018D75;
+	right: 0;
+	border-radius: 5px 0 0 5px;
+	z-index: 998;
+}
+.slideRight .slide ul{
+	list-style: none;
+}
+.slideRight .slide .info{
+	top: 5%;
+	height: 230px;
+	position: absolute;
+	right: 100%;
+	background: #018D75;
+	width: 0px;
+	overflow: hidden;
+	transition:0.5s;
+	border-radius:4px 0 0 4px ;
+}
+.slideRight .slide .info.hover{
+	width: 145px;
+	
+}
+.slideRight .slide .info li{
+	width: 145px;
+	color: #CCCCCC;
+	text-align: center;
+}
+.slideRight .slide .info li p{
+	font-size: 1.1em;
+	line-height: 2em;
+	padding: 15px;
+	text-align: left;
+}
+.slideRight .slide .info li.buttton p a{
+	display: block;
+	margin-top: 12px;
+	width: 100px;
+	height: 32px;
+	line-height: 32px;
+	color: #00DFB9;
+	font-size: 16px;   
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid #00DFB9;
+	border-radius: 5px;
+}
+.slideRight .slide .info li.buttton p a:hover{
+	color: #FFFFFF;
+	border: none;
+	background: #00E0DB;
+}
+.slideRight .slide .info li div{
+	height: 100%;
+	background: #DEFFF9;
+	margin: 15px;
+}
+.slideRight .slide .info li div{
+	width: 100%;
+	height: 100%;
+}
+/* 	自适应 当屏小于1050时隐藏
+@media screen and (max-width: 1050px) {
+	.slide{
+		display: none;
+	}
+} */
+
+/* 难易度 */
+.simple div{
+	float: left;
+}
+.commonly div{
+	float: left;
+}
+.difficulty div{
+	float: left;
+}
