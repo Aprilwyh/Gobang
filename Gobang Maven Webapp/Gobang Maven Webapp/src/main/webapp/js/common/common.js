@@ -23,7 +23,7 @@ function pop(isRrdz){
 	});
 	$('.bgPop').click(function () {
 	    $('.bgPop,.pop').hide();
-	    $("#nyd").val("一般");
+	    $("#nyd").val("commonly");
 	});
 	/**
 	 * 鼠标移入移出效果
@@ -41,13 +41,13 @@ function pop(isRrdz){
 	    var clickedGameDivId = $(this).attr("id");
 	    $(".commonly").hide();
 	    if(clickedGameDivId=="simple"){
-	    	$("#nyd").val("简单");
+	    	$("#nyd").val("simple");
 	    	$(".simple").show();
 	    }else if(clickedGameDivId=="difficulty"){
-	    	$("#nyd").val("困难");
+	    	$("#nyd").val("difficulty");
 	    	$(".difficulty").show();
 	    }else{
-	    	$("#nyd").val("一般");
+	    	$("#nyd").val("commonly");
 	    	$(".commonly").show();
 	    }
 	});
@@ -56,8 +56,16 @@ function pop(isRrdz){
  * 退出游戏
  */
 function closewin(){
-	self.opener=null;
-	self.close();
+//	self.opener=null;
+//	self.close();
+	var userAgent = navigator.userAgent;
+	if (userAgent.indexOf("Edge") > 0 || userAgent.indexOf("MSIE") > 0){
+		window.opener = null;
+		window.open("", "_self");
+	   	window.close();
+	} else {
+		window.location.href="about:blank";
+	}
 }
 /**
  * 操作栏

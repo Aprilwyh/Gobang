@@ -49,9 +49,9 @@ var goBang = {
 	 * 重置棋盘
 	 */
 	resetChessBoard: function () {
-		$("#RetractChess").attr("disabled", false); 
 		$("div.chessboard").html(this.chessBoardHtml);
 		this.isGameOver = false;
+		this.isGameStart = false;
 		this.isPlayerTurn = true;
 		//初始化棋子状态
 		var i, j;
@@ -230,10 +230,33 @@ var goBang = {
 	 * @param j 最后一个棋子的位置 左右坐标
 	 */
 	playerWinOrNot: function (i, j) {
-		var nums = 1,	//连续棋子个数
+		var _goBangChess = this;
+		var nums,	//连续棋子个数
 			chessColor = this.humanPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS,
 			m, n;
-		//x方向
+		nums = _goBangChess.isFiveX(i,j,chessColor);//水平方向
+		if(_goBangChess.isFive(nums))
+			return;
+		nums = _goBangChess.isFiveY(i,j,chessColor);//垂直方向
+		if(_goBangChess.isFive(nums))
+			return;
+		nums = _goBangChess.isFiveXY(i,j,chessColor);//左斜方向
+		if(_goBangChess.isFive(nums))
+			return;
+		nums = _goBangChess.isFiveYX(i,j,chessColor);//右斜方向
+		if(_goBangChess.isFive(nums))
+			return;
+		this.AImoveChess();
+	},
+	/**
+	 * 判断是否成五 X方向
+	 * @param i
+	 * @param j
+	 * @param nums
+	 */
+	isFiveX: function(i,j,chessColor){
+		var m,nums = 1;
+		//x方向 →
 		for (m = j - 1; m >= 0; m--) {//→
 			if (this.chessArr[i][m] === chessColor) {
 				nums++;
@@ -248,12 +271,10 @@ var goBang = {
 				break;
 			}
 		}
-		if (nums >= 5) {
-			this.playerWin();
-			return;
-		}else {
-			nums = 1;
-		}
+		return nums;
+	},
+	isFiveY: function(i,j,chessColor){
+		var m,nums = 1;
 		//y方向
 		for (m = i - 1; m >= 0; m--) {//↑
 			if (this.chessArr[m][j] === chessColor) {
@@ -269,12 +290,10 @@ var goBang = {
 				break;
 			}
 		}
-		if (nums >= 5) {
-			this.playerWin();
-			return;
-		}else {
-			nums = 1;
-		}
+		return nums;
+	},
+	isFiveXY: function(i,j,chessColor){
+		var m,n,nums = 1;
 		//左斜方向
 		for (m = i - 1, n = j - 1; m >= 0 && n >= 0; m--, n--) {//↖
 			if (this.chessArr[m][n] === chessColor) {
@@ -290,12 +309,10 @@ var goBang = {
 				break;
 			}
 		}
-		if (nums >= 5) {
-			this.playerWin();
-			return;
-		}else {
-			nums = 1;
-		}
+		return nums;
+	},
+	isFiveYX: function(i,j,chessColor){
+		var m,n,nums = 1;
 		//右斜方向
 		for (m = i - 1, n = j + 1; m >= 0 && n < 15; m--, n++) {//↗
 			if (this.chessArr[m][n] === chessColor) {
@@ -311,11 +328,19 @@ var goBang = {
 				break;
 			}
 		}
+	},
+	/**
+	 * 成五 判赢
+	 * @param nums
+	 * @returns {Boolean}
+	 */
+	isFive: function(nums){
 		if (nums >= 5) {
 			this.playerWin();
-			return;
+			return true;
+		}else {
+			return false;
 		}
-		this.AImoveChess();
 	},
 	playerWin: function () {
 		this.showResult(true);
@@ -506,7 +531,6 @@ var goBang = {
 	 * @param isPlayerWin 是否玩家获胜
 	 */
 	showWinChesses: function (isPlayerWin) {
-		$("#RetractChess").attr("disabled", true);
 		var nums = 1,	//连续棋子个数
 			lineChess = [],	//连续棋子位置
 			i,
@@ -830,11 +854,21 @@ var goBang = {
 				}
 				break;
 			case 4:
-				if (side1 && side2) {
-					weight = isAI ? 5000 : 2000;	//独四
-				}
-				else if (side1 || side2) {
-					weight = isAI ? 400 : 100;	//单四
+				if($("#nyd").val()=="simple"){
+					if (side1 && side2) {
+						weight = isAI ? 50 : 20;	//独四
+					}
+					else if (side1 || side2) {
+						weight = isAI ? 40 : 1;	//单四
+					}
+
+				}else{
+					if (side1 && side2) {
+						weight = isAI ? 5000 : 2000;	//独四
+					}
+					else if (side1 || side2) {
+						weight = isAI ? 400 : 100;	//单四
+					}
 				}
 				break;
 			case 5:
@@ -850,6 +884,10 @@ var goBang = {
 	 * 悔棋
 	 */
 	retract: function(){
+		if(this.isGameOver){
+			$.myToast('游戏已结束');
+			return;
+		}
 		var iplayerLastChess,jplayerLastChess,iAILastChess,jAILastChess;
 		if(this.playerLastChess.length==0&&this.AILastChess.length==0){
 			$.myToast('请先行棋');
@@ -877,6 +915,14 @@ var goBang = {
 		$.myToast('悔棋成功');
 	},
 	giveUp: function(){
+		if(this.isGameOver){
+			$.myToast('游戏已结束');
+			return;
+		}
+		if(!this.isGameStart){
+			$.myToast('游戏已结束');
+			return;
+		}
 		var _goBangChess = this;
 		_goBangChess.isGameOver= true; //游戏结束
 	}

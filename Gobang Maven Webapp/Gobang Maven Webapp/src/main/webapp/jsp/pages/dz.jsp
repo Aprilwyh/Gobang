@@ -16,6 +16,7 @@
 	<!-- <script type="text/javascript" src="js/tx/pgy.js"></script> -->
 </head>
 <body>
+<script type="text/javascript" src="js/tx/pgy.js"></script>
 <div class="wrapper" style="margin: auto;">
 	<!-- 棋盘 -->
 	<div class="chessboard">

@@ -16,6 +16,7 @@
 </style>
 </head>
 <body>
+<script type="text/javascript" src="js/tx/pgy.js"></script>
 <div class="IntroduceContent">
 <div class = "Content">
 	<h4>五子棋对弈说明</h4>
