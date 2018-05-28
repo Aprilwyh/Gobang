@@ -58,14 +58,22 @@ function pop(isRrdz){
 function closewin(){
 //	self.opener=null;
 //	self.close();
-	var userAgent = navigator.userAgent;
-	if (userAgent.indexOf("Edge") > 0 || userAgent.indexOf("MSIE") > 0){
+	var ieVersion = IEVersion();
+	if(ieVersion != '-1'){
 		window.opener = null;
 		window.open("", "_self");
 	   	window.close();
-	} else {
+	}else{
 		window.location.href="about:blank";
 	}
+//	var userAgent = navigator.userAgent;
+//	if (userAgent.indexOf("Edge") > 0 || userAgent.indexOf("MSIE") > 0){
+//		window.opener = null;
+//		window.open("", "_self");
+//	   	window.close();
+//	} else {
+//		window.location.href="about:blank";
+//	}
 }
 /**
  * 操作栏
@@ -78,3 +86,37 @@ $(function(){
 		$('.slide .info').removeClass('hover');
 	});	
 });
+/**
+ * 关闭特效
+ */
+function closeShowResult(){
+  	$('#showResult').click(function () {
+  		$('#showResult').hide();
+	});
+}
+/**
+ * 黑棋获胜
+ */
+function winBlack(){
+	closeShowResult();
+	$('#showResult').show();
+	$('#winBlack').show();
+	$('#winWhite').hide();
+	$('#congratulations').show();
+}
+/**
+ * 白棋获胜
+ */
+function winWhite(){
+	$('#showResult').show();
+	closeShowResult();
+	$('#winWhite').show();
+	$('#winBlack').hide();
+	$('#congratulations').show();
+}
+/**
+ * AI获胜
+ */
+function winAI(){
+	$('#congratulations').hide();
+}

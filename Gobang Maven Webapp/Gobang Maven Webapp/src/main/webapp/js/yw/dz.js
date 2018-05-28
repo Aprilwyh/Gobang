@@ -328,6 +328,7 @@ var goBang = {
 				break;
 			}
 		}
+		return nums;
 	},
 	/**
 	 * 成五 判赢
@@ -345,6 +346,7 @@ var goBang = {
 	playerWin: function () {
 		this.showResult(true);
 		this.gameOver();
+		winBlack();
 	},
 	/**
 	 * AI下棋 如果是人人，AI不下改由对方下
@@ -376,6 +378,8 @@ var goBang = {
 		this.AILastChess = [maxX, maxY];
 		if ((maxWeight >= 100000 && maxWeight < 250000) || (maxWeight >= 500000)) {
 			this.showResult(false);
+			winWhite();
+			winAI();
 			this.gameOver();
 		}
 		else {
@@ -433,6 +437,7 @@ var goBang = {
 				tem = goBang.computeWeight(i,j);
 				if ((tem >= 100000 && tem < 250000) || (tem >= 500000)) {
 					goBang.showResult(false);
+					winWhite();
 					goBang.gameOver();
 				}
 				else {

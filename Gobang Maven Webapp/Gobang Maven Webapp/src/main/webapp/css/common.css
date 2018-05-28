@@ -106,3 +106,26 @@
 .difficulty div{
 	float: left;
 }
+
+/* 获胜 */
+#showResult{
+	 position: absolute;  z-index: 999;  left: 0;  top: 0;  width: 100%;  height: 100%;  background: rgba(0, 0, 0, 0.2);
+}
+
+#canvas{
+	cursor: crosshair;
+	display: block;
+}
+
+#winDec{
+margin-top:400px;
+margin-left:600px;
+  position:absolute;
+  display: inline-block;
+  color: rgba(102, 249, 207,0.6);
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  white-space: nowrap;
+ 
+}

@@ -1,28 +1,3 @@
-﻿<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>HTML5 Canvas全屏烟花动画特效 - 站长素材</title>
-
-<style>
-/* basic styles for black background and crosshair cursor */
-body {
-	background: #000;
-	margin: 0;
-}
-
-canvas {
-	cursor: crosshair;
-	display: block;
-}
-</style>
-
-</head>
-<body>
-
-<canvas id="canvas"></canvas>
-
-<script>
 // when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
 // not supported in all browsers though and sometimes needs a prefix, so we need a shim
 window.requestAnimFrame = ( function() {
@@ -35,7 +10,7 @@ window.requestAnimFrame = ( function() {
 })();
 
 // now we will setup our basic variables for the demo
-var canvas = document.getElementById( 'canvas' ),
+var canvas = document.getElementById('canvas'),
 		ctx = canvas.getContext( '2d' ),
 		// full screen dimensions
 		cw = window.innerWidth,
@@ -243,11 +218,11 @@ function loop() {
 	// lighter creates bright highlight points as the fireworks and particles overlap each other
 	ctx.globalCompositeOperation = 'lighter';
 	
-    var text = "congratulations !!";  
+    var text = "congratulations";  
   ctx.font = "50px sans-serif";
   var textData = ctx.measureText(text);
-  ctx.fillStyle = "rgba("+parseInt(random(0,255))+","+parseInt(random(0,255))+","+parseInt(random(0,255))+",0.3)";
-  ctx.fillText(text,cw /2-textData.width/2,ch/2); 
+  ctx.fillStyle = "rgba(102, 249, 207,0.3)";
+  ctx.fillText(text,cw /2-textData.width/2,3*ch/4); 
   
 	// loop over each firework, draw it, update it
 	var i = fireworks.length;
@@ -313,7 +288,3 @@ canvas.addEventListener( 'mouseup', function( e ) {
 // once the window loads, we are ready for some fireworks!
 window.onload = loop;
 
-</script>
-
-</body>
-</html>
