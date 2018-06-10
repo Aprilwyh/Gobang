@@ -15,12 +15,12 @@ function pop(isRrdz){
 		return;
 	}
     $('.bgPop,.pop').show();
-  	$('.pop-close').click(function () {
-	    $('.bgPop,.pop').hide();
-	});
-	$('.click_pop').click(function () {
-	    $('.bgPop,.pop').show();
-	});
+//  	$('.pop-close').click(function () {
+//	    $('.bgPop,.pop').hide();
+//	});
+//	$('.click_pop').click(function () {
+//	    $('.bgPop,.pop').show();
+//	});
 	$('.bgPop').click(function () {
 	    $('.bgPop,.pop').hide();
 	    $("#nyd").val("commonly");
@@ -56,8 +56,6 @@ function pop(isRrdz){
  * 退出游戏
  */
 function closewin(){
-//	self.opener=null;
-//	self.close();
 	var ieVersion = IEVersion();
 	if(ieVersion != '-1'){
 		window.opener = null;
@@ -66,14 +64,6 @@ function closewin(){
 	}else{
 		window.location.href="about:blank";
 	}
-//	var userAgent = navigator.userAgent;
-//	if (userAgent.indexOf("Edge") > 0 || userAgent.indexOf("MSIE") > 0){
-//		window.opener = null;
-//		window.open("", "_self");
-//	   	window.close();
-//	} else {
-//		window.location.href="about:blank";
-//	}
 }
 /**
  * 操作栏

@@ -9,6 +9,10 @@ window.requestAnimFrame = ( function() {
 				};
 })();
 
+
+//once the window loads, we are ready for some fireworks!
+window.onload = loop;
+
 // now we will setup our basic variables for the demo
 var canvas = document.getElementById('canvas'),
 		ctx = canvas.getContext( '2d' ),
@@ -285,6 +289,4 @@ canvas.addEventListener( 'mouseup', function( e ) {
 	mousedown = false;
 });
 
-// once the window loads, we are ready for some fireworks!
-window.onload = loop;
 

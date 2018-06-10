@@ -13,7 +13,6 @@
 	<script type="text/javascript" src="js/common/common.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/yw/dz.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/common/GyUtils.js" charset="utf-8"></script>
-	<!-- <script type="text/javascript" src="js/tx/pgy.js"></script> -->
 </head>
 <body>
 <script type="text/javascript" src="js/tx/pgy.js"></script>
@@ -331,8 +330,10 @@
 <!-- 获胜 -->
 <div id="showResult" hidden="hidden">
 	<div id="winDec">
-		<div id="winBlack" hidden="hidden"><img src="img/black.png"/>棋获胜</div>
-		<div id="winWhite" hidden="hidden"><img src="img/white.png"/>棋获胜</div>
+		<div id="winBlack" hidden="hidden">黑棋获胜</div>
+		<div id="winWhite" hidden="hidden">白棋获胜</div>
+<!-- 		<div id="winBlack" hidden="hidden"><img src="img/black.png"/>棋获胜</div>
+		<div id="winWhite" hidden="hidden"><img src="img/white.png"/>棋获胜</div> -->
 	</div>
 	<div id = "congratulations">
 		<canvas id="canvas"></canvas>

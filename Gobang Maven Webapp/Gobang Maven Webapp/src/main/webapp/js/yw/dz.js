@@ -49,7 +49,7 @@ var goBang = {
 	 * 重置棋盘
 	 */
 	resetChessBoard: function () {
-		$("div.chessboard").html(this.chessBoardHtml);
+		$("div.chessboard").html(this.chessBoardHtml);//重新展示棋盘
 		this.isGameOver = false;
 		this.isGameStart = false;
 		this.isPlayerTurn = true;
@@ -73,6 +73,7 @@ var goBang = {
 		$("div.chessboard div").hover(
 			function () {
 				if (!_goBangChess.isPlayerTurn || _goBangChess.isGameOver) { return; }
+				//获取鼠标位置
 				var index = $(this).index(),
 					i = index / 15 | 0,
 					j = index % 15;
@@ -215,7 +216,7 @@ var goBang = {
 	 */
 	playChess: function (i, j, color) {
 		this.chessArr[i][j] = color === "black" ? this.BLACK_CHESS : this.WHITE_CHESS;
-		var lastChess = color !== "black" ? "black" : "white";
+//		var lastChess = color !== "black" ? "black" : "white";
 		if (color === this.AIPlayer) {
 			$("div.chessboard div." + color + "-last").addClass(color).removeClass(color + "-last");
 			$("div.chessboard div:eq(" + (i * 15 + j) + ")").addClass(color + "-last");
@@ -232,8 +233,7 @@ var goBang = {
 	playerWinOrNot: function (i, j) {
 		var _goBangChess = this;
 		var nums,	//连续棋子个数
-			chessColor = this.humanPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS,
-			m, n;
+			chessColor = this.humanPlayer === "black" ? this.BLACK_CHESS : this.WHITE_CHESS;
 		nums = _goBangChess.isFiveX(i,j,chessColor);//水平方向
 		if(_goBangChess.isFive(nums))
 			return;
@@ -256,15 +256,15 @@ var goBang = {
 	 */
 	isFiveX: function(i,j,chessColor){
 		var m,nums = 1;
-		//x方向 →
-		for (m = j - 1; m >= 0; m--) {//→
+		//x方向 
+		for (m = j - 1; m >= 0; m--) {//←
 			if (this.chessArr[i][m] === chessColor) {
 				nums++;
 			}else {
 				break;
 			}
 		}
-		for (m = j + 1; m < 15; m++) {//←
+		for (m = j + 1; m < 15; m++) {//→
 			if (this.chessArr[i][m] === chessColor) {
 				nums++;
 			}else {
@@ -362,7 +362,7 @@ var goBang = {
 			maxWeight = 0,
 			i, j, tem;
 		for (i = 14; i >= 0; i--) {//从下往上
-			for (j = 14; j >= 0; j--) {//从左往右
+			for (j = 14; j >= 0; j--) {//从右往左
 				if (this.chessArr[i][j] !== this.NO_CHESS) {
 					continue;
 				}
@@ -376,8 +376,8 @@ var goBang = {
 		}
 		this.playChess(maxX, maxY, this.AIPlayer);
 		this.AILastChess = [maxX, maxY];
-		if ((maxWeight >= 100000 && maxWeight < 250000) || (maxWeight >= 500000)) {
-			this.showResult(false);
+		if (maxWeight >= 100000) {
+			this.showResult(false);//showResult(isPlayWin)
 			winWhite();
 			winAI();
 			this.gameOver();
@@ -435,7 +435,7 @@ var goBang = {
 				}
 				_goBangChess.AILastChess = [i, j];
 				tem = goBang.computeWeight(i,j);
-				if ((tem >= 100000 && tem < 250000) || (tem >= 500000)) {
+				if (tem >= 100000) {
 					goBang.showResult(false);
 					winWhite();
 					goBang.gameOver();
@@ -522,12 +522,6 @@ var goBang = {
 	 * 显示游戏结果
 	 */
 	showResult: function(isPlayerWin) {
-		if (isPlayerWin) {
-//			$("#result_tips").html("恭喜你获胜！");
-		}
-		else {
-//			$("#result_tips").html("哈哈，你输咯！");
-		}
 		this.isGameOver = true;
 		this.showWinChesses(isPlayerWin);
 	},
@@ -554,8 +548,8 @@ var goBang = {
 		}
 		$("div.chessboard div." + this.AIPlayer + "-last").addClass(this.AIPlayer).removeClass(this.AIPlayer + "-last");
 		//x方向
-		lineChess[0] = [i];
-		lineChess[1] = [j];
+		lineChess[0] = [];
+		lineChess[1] = [];
 		for (m = j - 1; m >= 0; m--) {
 			if (this.chessArr[i][m] === chessColor) {
 				lineChess[0][nums] = i;
@@ -679,7 +673,7 @@ var goBang = {
 	putDirectX: function (i, j, chessColor) {
 		var m, n,
 			nums = 1,
-			side1 = false,
+			side1 = false,//默认被玩家棋子截断
 			side2 = false;
 		for (m = j - 1; m >= 0; m--) {
 			if (this.chessArr[i][m] === chessColor) {
@@ -867,6 +861,13 @@ var goBang = {
 						weight = isAI ? 40 : 1;	//单四
 					}
 
+				}else if($("#nyd").val()=="commonly"){
+					if (side1 && side2) {
+						weight = isAI ? 200 : 50;	//独四
+					}
+					else if (side1 || side2) {
+						weight = isAI ? 100 : 40;	//单四
+					}
 				}else{
 					if (side1 && side2) {
 						weight = isAI ? 5000 : 2000;	//独四
@@ -925,7 +926,7 @@ var goBang = {
 			return;
 		}
 		if(!this.isGameStart){
-			$.myToast('游戏已结束');
+			$.myToast('游戏未开始');
 			return;
 		}
 		var _goBangChess = this;
