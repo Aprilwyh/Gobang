@@ -225,7 +225,7 @@ function loop() {
     var text = "congratulations";  
   ctx.font = "50px sans-serif";
   var textData = ctx.measureText(text);
-  ctx.fillStyle = "rgba(102, 249, 207,0.3)";
+  ctx.fillStyle = "rgba(255,255,0,0.3)";
   ctx.fillText(text,cw /2-textData.width/2,3*ch/4); 
   
 	// loop over each firework, draw it, update it

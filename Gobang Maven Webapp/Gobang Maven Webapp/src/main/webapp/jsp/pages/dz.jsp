@@ -260,7 +260,7 @@
 		<div class="chess-bottom"></div>
 		<div class="chess-bottom chess-right"></div>
 	</div>
-	<!-- 操作 -->
+	<!-- 难易度 -->
 	<div class = "operation">
 		<div class="simple" hidden="hidden">
 			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
@@ -277,7 +277,10 @@
 			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
 			<div><img src="img/light.png" alt="nydIsDisplay1"/></div>
 		</div>
-		<div class="nydIsDisplay" hidden="hidden"><span style="font-family: STXinwei;color: blue;">当前游戏：</span><input id ="nyd" readonly="readonly" style="width: 100px;border-radius: 4px;border: 1px solid #eee;"/></div>
+		<div class="nydIsDisplay" hidden="hidden">
+			<span style="font-family: STXinwei;color: blue;">当前游戏：</span>
+			<input id ="nyd" readonly="readonly" style="width: 100px;border-radius: 4px;border: 1px solid #eee;"/>
+		</div>
 		<input hidden="hidden" id="isRrdz" value="${rrdz}"/>
 	</div>
 	<!-- 图片请求 不会在页面显示 -->
@@ -312,8 +315,7 @@
 
 <!--右侧悬浮菜单-->
 <div class="slideRight">
-<div class="slide">
-	</ul>
+	<div class="slide">
 		<ul class="info">
 			<li class="buttton">
 				<p><a href="#" id= "resetChessBoard"  onclick="$.myConfirm({title:'清盘提示',message:'确认清盘吗？清盘后将重新游戏...',callback:function(){goBang.resetChessBoard();}})">清盘</a></p>

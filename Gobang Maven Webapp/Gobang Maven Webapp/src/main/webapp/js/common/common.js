@@ -66,7 +66,7 @@ function closewin(){
 	}
 }
 /**
- * 操作栏
+ * 右侧操作栏
  */
 $(function(){
 	$('.slide').mouseenter(function(){
